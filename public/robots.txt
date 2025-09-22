@@ -1,0 +1,10 @@
+# Allow all search engines
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://jpgstopdf.com/sitemap.xml
