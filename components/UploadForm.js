@@ -10,6 +10,7 @@ export default function UploadForm({ autoDownload = true }) {
   const [downloadUrl, setDownloadUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
@@ -25,34 +26,38 @@ export default function UploadForm({ autoDownload = true }) {
 
   const handleUpload = async () => {
     if (files.length === 0) return alert("Please select files");
-
     setLoading(true);
     setProgress(0);
 
     try {
-      const res = await axios.post("http://localhost:8080/api/v1/upload-urls", {
-        fileCount: files.length
+      // Request presigned URLs
+      const res = await axios.post(`${API_BASE_URL}/api/v1/upload-urls`, {
+        fileCount: files.length,
       });
       const { uploadUrls, operationId } = res.data;
 
+      // Upload each file
       for (let i = 0; i < files.length; i++) {
         await axios.put(uploadUrls[i].url, files[i], {
           headers: { "Content-Type": files[i].type },
           onUploadProgress: (e) => {
             const percent = Math.round((e.loaded * 100) / e.total);
-            setProgress(Math.round(((i + percent / 100) / files.length) * 100));
-          }
+            setProgress(
+              Math.round(((i + percent / 100) / files.length) * 100)
+            );
+          },
         });
       }
 
-      const convertRes = await axios.post("http://localhost:8080/api/v1/convert/start", {
+      // Start conversion
+      const convertRes = await axios.post(`${API_BASE_URL}/api/v1/convert/start`, {
         operationId,
-        fileKeys: uploadUrls.map(u => u.fileKey)
+        fileKeys: uploadUrls.map((u) => u.fileKey),
       });
 
       setDownloadUrl(convertRes.data.downloadUrl);
 
-      // Auto download
+      // Auto download if enabled
       if (autoDownload) {
         const link = document.createElement("a");
         link.href = convertRes.data.downloadUrl;
@@ -89,6 +94,7 @@ export default function UploadForm({ autoDownload = true }) {
         className="hidden"
       />
 
+      {/* File list */}
       {files.length > 0 && (
         <div className="mb-3">
           <h4 className="font-semibold mb-1">Selected Files:</h4>
@@ -110,6 +116,7 @@ export default function UploadForm({ autoDownload = true }) {
         </div>
       )}
 
+      {/* Convert button */}
       <button
         className="bg-green-600 text-white px-4 py-2 rounded mt-3 disabled:opacity-50 w-full hover:bg-green-700"
         onClick={handleUpload}
@@ -118,7 +125,19 @@ export default function UploadForm({ autoDownload = true }) {
         {loading ? "Converting..." : "Convert to PDF"}
       </button>
 
+      {/* Progress bar */}
       {progress > 0 && <ProgressBar value={progress} />}
+
+      {/* Manual download link if autoDownload = false */}
+      {!autoDownload && downloadUrl && (
+        <a
+          href={downloadUrl}
+          download="converted.pdf"
+          className="block mt-4 text-blue-800 underline"
+        >
+          ⬇ Download PDF
+        </a>
+      )}
     </div>
   );
 }
