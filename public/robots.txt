@@ -8,3 +8,5 @@ Disallow: /private/
 
 # Sitemap location
 Sitemap: https://jpgstopdf.com/sitemap.xml
+
+

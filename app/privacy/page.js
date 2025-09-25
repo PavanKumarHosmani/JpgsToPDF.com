@@ -7,6 +7,7 @@ export default function PrivacyPage() {
   const pageUrl = "https://jpgstopdf.com/privacy";
 
   return (
+    <>
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
       <h1 className="text-3xl font-bold mb-4 text-center">Privacy Policy</h1>
       <p className="text-gray-700 mb-2">
@@ -32,5 +33,6 @@ export default function PrivacyPage() {
         }}
       />
     </main>
+    </>
   );
 }

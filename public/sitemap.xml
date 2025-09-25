@@ -17,6 +17,22 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Terms & Conditions -->
+  <url>
+    <loc>https://jpgstopdf.com/Terms&Conditions</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Disclaimer -->
+  <url>
+    <loc>https://jpgstopdf.com/disclaimer</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- FAQ -->
   <url>
     <loc>https://jpgstopdf.com/faq</loc>
