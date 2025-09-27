@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default function Home() {  
-  const canonicalUrl = "https://www.jpgstopdf.com/";
+  const canonicalUrl = "https://www.jpgstopdf.com";
 
   const softwareSchema = {
     "@context": "https://schema.org",
