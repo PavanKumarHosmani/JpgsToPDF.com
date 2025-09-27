@@ -3,13 +3,13 @@ import Footer from "../components/Footer";
 import Head from "next/head";
 
 export const metadata = {
-  title: "Free Online JPG to PDF Converter | JPGSTOPDF.COM",
-  description: "Convert JPG, PNG, and WebP images to a single PDF online for free. Fast, secure, and works on all devices.",
+  title: "Convert JPG to PDF | Images JPG to PDF online",
+  description: "Convert JPG images to PDF in seconds. Easily adjust orientation and margins. Upload your file and transform it. Select JPG images.",
   keywords: "jpg to pdf, jpg to pdf converter, image to pdf, merge images to pdf, free pdf converter",
 };
 
-export default function Home() {
-  const canonicalUrl = "https://jpgstopdf.com";
+export default function Home() {  
+  const canonicalUrl = "https://www.jpgstopdf.com/";
 
   const softwareSchema = {
     "@context": "https://schema.org",
@@ -62,6 +62,30 @@ export default function Home() {
         <section className="flex justify-center w-full max-w-4xl px-4 mt-10">
           <UploadForm autoDownload={true} />
         </section>
+
+         {/* Features Section */}
+        <section className="max-w-4xl mx-auto my-12 px-4">
+          <h2 className="text-2xl font-semibold mb-6 text-center">Why Choose Our Converter?</h2>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Convert multiple images (JPG, PNG, WebP) to PDF in seconds.</li>
+            <li>Adjust page orientation and margins for professional PDFs.</li>
+            <li>Completely free to use with no hidden charges.</li>
+            <li>Fast, secure, and works on all devices including mobile.</li>
+            <li>No installation required – 100% online.</li>
+          </ul>
+        </section>
+
+        {/* How It Works Section */}
+        <section className="max-w-4xl mx-auto my-12 px-4">
+          <h2 className="text-2xl font-semibold mb-6 text-center">How It Works</h2>
+          <ol className="list-decimal list-inside text-gray-700 space-y-2">
+            <li>Upload your JPG, PNG, or WebP images using the form above.</li>
+            <li>Arrange images in your preferred order.</li>
+            <li>Click "Convert" to generate a PDF instantly.</li>
+            <li>Download your PDF securely without any registration.</li>
+          </ol>
+        </section>
+
 
         {/* FAQ Section */}
         <section className="max-w-3xl mx-auto my-16 px-4">

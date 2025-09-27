@@ -7,6 +7,6 @@ Disallow: /node_modules/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://jpgstopdf.com/sitemap.xml
+Sitemap: https://www.jpgstopdf.com/sitemap.xml
 
 
