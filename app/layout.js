@@ -1,9 +1,10 @@
 // app/layout.js
 import "../styles/globals.css";
+import Script from 'next/script';
 
 export const metadata = {
-  title: "PDFsMerger.com | Free Online PDF Merger",
-  description: "Merge multiple PDF files online for free. Secure, fast, and easy PDF merging.",
+  title: "JGPSToPDF.com | Images JPG to PDF online",
+  description: "Convert JPG images to PDF online for free. Fast, easy, and secure JPG to PDF converter.",
 };
 
 export default function RootLayout({ children }) {
@@ -42,8 +43,16 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+
       </head>
       <body className="bg-gray-50 text-gray-800 antialiased">
+      <Script
+      id="adsense-script"
+      strategy="afterInteractive"
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
+      crossOrigin="anonymous"
+    />
         {children}
       </body>
     </html>
