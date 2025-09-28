@@ -5,7 +5,7 @@ export const metadata = {
 };
 
 export default function TermsPage() {
-  const pageUrl = "https://jpgstopdf.com/Terms&Conditions";
+  const pageUrl = "https://www.jpgstopdf.com/Terms&Conditions";
 
   return (
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">

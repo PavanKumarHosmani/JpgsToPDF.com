@@ -4,7 +4,7 @@ export const metadata = {
 };
 
 export default function PrivacyPage() {
-  const pageUrl = "https://jpgstopdf.com/privacy";
+  const pageUrl = "https://wwww.jpgstopdf.com/privacy";
 
   return (
     <>

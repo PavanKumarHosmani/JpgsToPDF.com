@@ -6,6 +6,6 @@ export default function robots() {
         disallow: ["/api/", "/admin/", "/_next/", "/node_modules/", "/private/"],
       },
     ],
-    sitemap: "https://jpgstopdf.com/sitemap.xml",
+    sitemap: "https://www.jpgstopdf.com/sitemap.xml",
   };
 }

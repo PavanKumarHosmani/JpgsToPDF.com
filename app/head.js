@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title>JPG to PDF Converter - Free Online Tool | JPGStopPDF</title>
+      <title>JPG to PDF Converter - Free Online Tool | JPGStoPDF</title>
       <meta
         name="description"
         content="Convert JPG images to PDF online for free. Fast, easy, and secure JPG to PDF converter."
@@ -12,7 +12,7 @@ export default function Head() {
 
 
       {/* Open Graph */}
-      <meta property="og:title" content="JPG to PDF Converter - Free Online Tool | JPGStopPDF" />
+      <meta property="og:title" content="JPG to PDF Converter - Free Online Tool | JPGStoPDF" />
       <meta property="og:description" content="Convert JPG images to PDF online for free. Fast, easy, and secure JPG to PDF converter." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.jpgstopdf.com/" />
@@ -20,7 +20,7 @@ export default function Head() {
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="JPG to PDF Converter - Free Online Tool | JPGStopPDF" />
+      <meta name="twitter:title" content="JPG to PDF Converter - Free Online Tool | JPGStoPDF" />
       <meta name="twitter:description" content="Convert JPG images to PDF online for free. Fast, easy, and secure JPG to PDF converter." />
       <meta name="twitter:image" content="https://www.jpgstopdf.com/og-image.jpg" />
     </>

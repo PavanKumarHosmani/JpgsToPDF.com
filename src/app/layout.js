@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        "name": "JPGStopPDF",
+        "name": "JPGStoPDF",
         "url": "https://www.jpgstopdf.com",
         "description":
           "Convert JPG images to PDF in seconds. Easily adjust orientation and margins. Upload your file and transform it. Select JPG images.",
@@ -35,12 +35,12 @@ export default function RootLayout({ children }) {
         "operatingSystem": "Web",
         "creator": {
           "@type": "Organization",
-          "name": "JPGStopPDF",
+          "name": "JPGStoPDF",
         },
       },
       {
         "@type": "Organization",
-        "name": "JPGStopPDF",
+        "name": "JPGStoPDF",
         "url": "https://www.jpgstopdf.com",
         "logo": "https://www.jpgstopdf.com/logo.png",
         "sameAs": [

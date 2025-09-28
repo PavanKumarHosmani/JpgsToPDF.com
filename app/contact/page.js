@@ -4,7 +4,7 @@ export const metadata = {
 };
 
 export default function ContactPage() {
-  const pageUrl = "https://jpgstopdf.com/contact";
+  const pageUrl = "https://www.jpgstopdf.com/contact";
 
   return (
     <main className="max-w-4xl mx-auto my-10 px-4">

@@ -5,7 +5,7 @@ export const metadata = {
 };
 
 export default function DisclaimerPage() {
-  const pageUrl = "https://jpgstopdf.com/disclaimer";
+  const pageUrl = "https://www.jpgstopdf.com/disclaimer";
 
   return (
     <main className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">

@@ -14,7 +14,7 @@ export default function Home() {
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Free Online Image to PDF Converter",
+    name: "Convert JPG to PDF. Images JPG to PDF online",
     operatingSystem: "Any",
     applicationCategory: "MultimediaApplication",
     description:
@@ -38,7 +38,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://jpgstopdf.com" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.jpgstopdf.com" },
     ],
   };
 
