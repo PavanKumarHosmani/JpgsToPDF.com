@@ -14,7 +14,7 @@ export default function Home() {
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Convert JPG to PDF. Images JPG to PDF online",
+    name: "JPG to PDF Converter. Images JPG to PDF online",
     operatingSystem: "Any",
     applicationCategory: "MultimediaApplication",
     description:

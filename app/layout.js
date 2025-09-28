@@ -13,9 +13,9 @@ export default function RootLayout({ children }) {
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        "name": "PDFsMerger",
+        "name": "JPGToPDF",
         "url": "https://www.jpgstopdf.com",
-        "description": "Merge multiple PDF files online for free. Secure, fast, and easy PDF merging.",
+        "description": "Merge multiple Images to PDF  online for free. Secure, fast, and easy JPG to PDF converter.",
         "applicationCategory": "Utility",
         "operatingSystem": "Web",
         "creator": {
