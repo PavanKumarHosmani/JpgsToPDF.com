@@ -2,8 +2,8 @@ import Head from "next/head";
 import UploadForm from "../components/UploadForm";
 
 export const metadata = {
-  title: "JPG to PDF Converter | JPGStoPDF.COM",
-  description: "Convert JPG, PNG, and WebP images to PDF in seconds. Adjust orientation, margins, and merge multiple files online for free.",
+  title: "JPG to PDF Converter | Unlimited Images To PDFs",
+  description: "Convert JPG, PNG, and WebP images to PDF instantly. Adjust page orientation, set margins, merge multiple files, and download high-quality PDFs online for free.",
 };
 
 export default function HomePage() {
@@ -19,12 +19,13 @@ export default function HomePage() {
       </Head>
 
       <main className="min-h-screen flex flex-col items-center relative px-6 py-12">
-        <h1 className="text-4xl font-bold text-center mb-6">
-          Free Online JPG to PDF Converter
-        </h1>
-        <p className="text-center mb-8 text-lg">
-          Merge multiple images into a single PDF instantly. Fast, secure, and free!
-        </p>
+          <section className="max-w-5xl mx-auto px-6 py-12">
+            <h1 className="text-4xl font-bold text-center mb-6">Free Online JPG to PDF Converter</h1>
+            <p className="text-lg text-gray-700 text-center mb-8">
+              Convert JPG, PNG, and WebP images to PDF instantly. Adjust page orientation, set margins, merge multiple files into a single PDF, and download high-quality PDFs securely online for free.
+              Our online converter is fast, safe, and works on any device without installation or registration. Whether you need a single file or want to merge multiple images, JPGStoPDF makes it simple and reliable for all users.
+            </p>
+          </section>
 
         <UploadForm autoDownload={true} />
 
@@ -38,6 +39,7 @@ export default function HomePage() {
             <li>No installation or registration required.</li>
           </ul>
         </section>
+
 
         <section className="max-w-4xl mx-auto my-12 px-4">
           <h2 className="text-2xl font-semibold mb-4 text-center">How It Works</h2>
