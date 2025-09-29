@@ -1,12 +1,9 @@
 import Head from "next/head";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import UploadForm from "../components/UploadForm";
 
 export const metadata = {
   title: "JPG to PDF Converter | JPGStoPDF.COM",
   description: "Convert JPG, PNG, and WebP images to PDF in seconds. Adjust orientation, margins, and merge multiple files online for free.",
-  keywords: "jpg to pdf, image to pdf online, free pdf converter, merge pdf",
 };
 
 export default function HomePage() {
@@ -18,27 +15,16 @@ export default function HomePage() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link rel="canonical" href={canonicalUrl} />
-        <link rel="alternate" href={canonicalUrl} hreflang="en-us" />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebPage",
-              url: canonicalUrl,
-              name: "JPG to PDF Converter - JPGStoPDF.COM",
-              description: metadata.description,
-            }),
-          }}
-        />
+        <link rel="alternate" href={canonicalUrl} hrefLang="en-us" />
       </Head>
 
-      <Header />
-
       <main className="min-h-screen flex flex-col items-center relative px-6 py-12">
-        <h1 className="text-4xl font-bold text-center mb-6">Free Online JPG to PDF Converter</h1>
-        <p className="text-center mb-8 text-lg">Merge multiple images into a single PDF instantly. Fast, secure, and free!</p>
+        <h1 className="text-4xl font-bold text-center mb-6">
+          Free Online JPG to PDF Converter
+        </h1>
+        <p className="text-center mb-8 text-lg">
+          Merge multiple images into a single PDF instantly. Fast, secure, and free!
+        </p>
 
         <UploadForm autoDownload={true} />
 
@@ -61,10 +47,22 @@ export default function HomePage() {
             <li>Click "Convert" to generate a PDF.</li>
             <li>Download your PDF securely.</li>
           </ol>
+
+                <section className="max-w-4xl mx-auto my-12 px-4">
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          About JPGStoPDF
+        </h2>
+        <p className="text-gray-700 text-lg leading-relaxed">
+          JPGStoPDF is a free online tool that allows you to convert your images
+          (JPG, PNG, WebP) to PDF format within seconds. You can merge multiple
+          images, adjust page orientation, set margins, and create professional-quality
+          PDFs without installing any software. Our service is fast, secure, and works
+          on any device – desktop, tablet, or mobile. No registration is required,
+          and your files are automatically deleted after processing to protect your privacy.
+        </p>
+      </section>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }
