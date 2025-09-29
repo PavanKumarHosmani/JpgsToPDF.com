@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        { "type": "host", "value": "jpgstopdf.com" }
+      ],
+      "destination": "https://www.jpgstopdf.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

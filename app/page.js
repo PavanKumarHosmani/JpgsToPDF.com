@@ -1,101 +1,66 @@
-import UploadForm from "../components/UploadForm";
-import Footer from "../components/Footer";
 import Head from "next/head";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import UploadForm from "../components/UploadForm";
 
 export const metadata = {
-  title: "Convert JPG to PDF | Images JPG to PDF online",
-  description: "Convert JPG images to PDF in seconds. Easily adjust orientation and margins. Upload your file and transform it. Select JPG images.",
-  keywords: "jpg to pdf, jpg to pdf converter, image to pdf, merge images to pdf, free pdf converter",
+  title: "JPG to PDF Converter | JPGStoPDF.COM",
+  description: "Convert JPG, PNG, and WebP images to PDF in seconds. Adjust orientation, margins, and merge multiple files online for free.",
+  keywords: "jpg to pdf, image to pdf online, free pdf converter, merge pdf",
 };
 
-export default function Home() {  
+export default function HomePage() {
   const canonicalUrl = "https://www.jpgstopdf.com";
-
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "JPG to PDF Converter. Images JPG to PDF online",
-    operatingSystem: "Any",
-    applicationCategory: "MultimediaApplication",
-    description:
-      "Convert JPG, PNG, and WebP images to a single PDF online for free. Secure, fast, and works on all devices.",
-    url: canonicalUrl,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      { "@type": "Question", name: "Is this converter free?", acceptedAnswer: { "@type": "Answer", text: "Yes, it is 100% free." } },
-      { "@type": "Question", name: "Do I need to install software?", acceptedAnswer: { "@type": "Answer", text: "No installation needed; works in browser." } },
-      { "@type": "Question", name: "Which formats are supported?", acceptedAnswer: { "@type": "Answer", text: "JPG, PNG, JPEG, WebP." } },
-      { "@type": "Question", name: "Is it secure?", acceptedAnswer: { "@type": "Answer", text: "Files are processed securely and never shared." } },
-    ],
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.jpgstopdf.com" },
-    ],
-  };
 
   return (
     <>
       <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
         <link rel="canonical" href={canonicalUrl} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+        <link rel="alternate" href={canonicalUrl} hreflang="en-us" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              url: canonicalUrl,
+              name: "JPG to PDF Converter - JPGStoPDF.COM",
+              description: metadata.description,
+            }),
+          }}
+        />
       </Head>
 
-      <main className="min-h-screen flex flex-col items-center relative">
-        {/* Header */}
-        <header className="bg-blue-700 text-white text-center py-10 w-full">
-          <h1 className="text-4xl font-bold">Free Online JPG to PDF Converter</h1>
-          <p className="mt-3 text-lg">Merge multiple images into a single PDF instantly.</p>
-        </header>
+      <Header />
 
-        {/* Upload Form */}
-        <section className="flex justify-center w-full max-w-4xl px-4 mt-10">
-          <UploadForm autoDownload={true} />
-        </section>
+      <main className="min-h-screen flex flex-col items-center relative px-6 py-12">
+        <h1 className="text-4xl font-bold text-center mb-6">Free Online JPG to PDF Converter</h1>
+        <p className="text-center mb-8 text-lg">Merge multiple images into a single PDF instantly. Fast, secure, and free!</p>
 
-         {/* Features Section */}
+        <UploadForm autoDownload={true} />
+
         <section className="max-w-4xl mx-auto my-12 px-4">
-          <h2 className="text-2xl font-semibold mb-6 text-center">Why Choose Our Converter?</h2>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
-            <li>Convert multiple images (JPG, PNG, WebP) to PDF in seconds.</li>
-            <li>Adjust page orientation and margins for professional PDFs.</li>
-            <li>Completely free to use with no hidden charges.</li>
-            <li>Fast, secure, and works on all devices including mobile.</li>
-            <li>No installation required – 100% online.</li>
+          <h2 className="text-2xl font-semibold mb-4 text-center">Why Choose JPGStoPDF?</h2>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>Convert JPG, PNG, WebP to PDF instantly.</li>
+            <li>Merge multiple images into a single PDF.</li>
+            <li>Adjust page orientation and margins.</li>
+            <li>Fast, secure, and works on all devices.</li>
+            <li>No installation or registration required.</li>
           </ul>
         </section>
 
-        {/* How It Works Section */}
         <section className="max-w-4xl mx-auto my-12 px-4">
-          <h2 className="text-2xl font-semibold mb-6 text-center">How It Works</h2>
-          <ol className="list-decimal list-inside text-gray-700 space-y-2">
-            <li>Upload your JPG, PNG, or WebP images using the form above.</li>
-            <li>Arrange images in your preferred order.</li>
-            <li>Click "Convert" to generate a PDF instantly.</li>
-            <li>Download your PDF securely without any registration.</li>
+          <h2 className="text-2xl font-semibold mb-4 text-center">How It Works</h2>
+          <ol className="list-decimal list-inside space-y-2 text-gray-700">
+            <li>Upload images using the form above.</li>
+            <li>Arrange them in the order you want.</li>
+            <li>Click "Convert" to generate a PDF.</li>
+            <li>Download your PDF securely.</li>
           </ol>
-        </section>
-
-
-        {/* FAQ Section */}
-        <section className="max-w-3xl mx-auto my-16 px-4">
-          <h2 className="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
-          {faqSchema.mainEntity.map((faq, idx) => (
-            <div key={idx} className="mb-4">
-              <h3 className="text-lg font-medium text-blue-700">{faq.name}</h3>
-              <p className="text-gray-700 mt-1">{faq.acceptedAnswer.text}</p>
-            </div>
-          ))}
         </section>
       </main>
 
