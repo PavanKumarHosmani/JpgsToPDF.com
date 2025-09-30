@@ -1,33 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [
-        { "type": "host", "value": "jpgstopdf.com" }
-      ],
-      "destination": "https://www.jpgstopdf.com/$1",
-      "permanent": true
-    },
-
-    {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/index.php",
-      "destination": "/",
-      "permanent": true
-    },
-
-    {
-      "source": "/:folder*/index.html",
-      "destination": "/:folder*",
-      "permanent": true
-    },
-    {
-      "source": "/:folder*/index.php",
-      "destination": "/:folder*",
+      "source": "/",
+      "destination": "https://www.jpgstopdf.com",
       "permanent": true
     }
   ]
