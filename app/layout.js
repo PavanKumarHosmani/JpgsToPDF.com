@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 
 export const metadata = {
-  title: "JPGStoPDF | Free JPG, PNG & WebP to PDF Converter",
+  title: "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
   description:
     "Convert JPG, PNG, and WebP images to PDF instantly. Adjust orientation, margins, merge multiple files, and download high-quality PDFs online for free.",
   icons: {
