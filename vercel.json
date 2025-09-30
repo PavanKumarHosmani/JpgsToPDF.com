@@ -1,8 +1,9 @@
 {
   "redirects": [
     {
-      "source": "/",
-      "destination": "https://www.jpgstopdf.com",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "jpgstopdf.com" }],
+      "destination": "https://www.jpgstopdf.com/:path*",
       "permanent": true
     }
   ]
