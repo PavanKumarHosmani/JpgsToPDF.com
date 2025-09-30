@@ -8,7 +8,7 @@ export default function Footer() {
 
         <div className="flex justify-center space-x-6 flex-wrap">
           <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
-          <Link href="/termsandconditions" className="hover:underline">Terms and Conditions</Link>
+          <Link href="/TermsandConditions" className="hover:underline">Terms and Conditions</Link>
           <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
           <Link href="/contact" className="hover:underline">Contact</Link>
           <Link href="/aboutus" className="hover:underline">About Us</Link>

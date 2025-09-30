@@ -13,7 +13,7 @@ export default function Header() {
           <Link href="/faq" className="hover:underline">FAQ</Link>
           <Link href="/contact" className="hover:underline">Contact</Link>
           <Link href="/privacy" className="hover:underline">Privacy</Link>
-          <Link href="/termsandconditions" className="hover:underline">Terms and Conditions</Link>
+          <Link href="/TermsandConditions" className="hover:underline">Terms and Conditions</Link>
           <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
         </nav>
       </div>
