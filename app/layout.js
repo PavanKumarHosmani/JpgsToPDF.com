@@ -7,14 +7,13 @@ export const metadata = {
   title: "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
   description:
     "Convert JPG, PNG, and WebP images to PDF instantly. Adjust orientation, margins, merge multiple files, and download high-quality PDFs online for free.",
-  metadataBase: new URL("https://www.jpgstopdf.com"), // ✅ required
   icons: {
     icon: "/favicon-32x32.png",
     shortcut: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
   alternates: {
-    canonical: "https://www.jpgstopdf.com/", // ✅ will now show
+    canonical: "https://www.jpgstopdf.com/",
     languages: {
       "en-US": "https://www.jpgstopdf.com/",
     },
@@ -24,9 +23,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* ✅ Needed so Next.js injects <title>, <meta>, <link rel="canonical"> */}
-      <head />
-
       <body>
         <GoogleAnalytics measurementId="G-XXXXXXXXXX" />
         <Header />

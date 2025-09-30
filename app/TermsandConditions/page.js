@@ -8,8 +8,6 @@ export const metadata = {
 };
 
 export default function TermsPage() {
-  const canonicalUrl = "https://www.jpgstopdf.com/TermsandConditions";
-
   return (
     <>
       <Head>
