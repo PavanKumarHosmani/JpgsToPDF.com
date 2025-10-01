@@ -1,5 +1,4 @@
 {
-  "regions": ["sin1", "syd1", "iad1", "hkg1", "bom1"],
   "redirects": [
     {
       "source": "/:path*",
