@@ -3,7 +3,8 @@ export default function robots() {
     rules: [
       {
         userAgent: "*",
-        disallow: ["/api/", "/admin/", "/_next/", "/node_modules/", "/private/"],
+        allow: ["/_next/static/"],
+        disallow: ["/api/", "/admin/", "/node_modules/", "/private/"],
       },
     ],
     sitemap: "https://www.jpgstopdf.com/sitemap.xml",
