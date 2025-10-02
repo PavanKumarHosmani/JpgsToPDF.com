@@ -1,4 +1,5 @@
 import UploadForm from "../components/UploadForm";
+import AdUnit from "../components/AdUnit";
 
 export default function HomePage() {
   return (
@@ -56,6 +57,11 @@ export default function HomePage() {
           <li>Files are automatically deleted after processing to protect privacy.</li>
         </ul>
       </section>
+
+      <div className="my-8 flex justify-center">
+        <AdUnit adSlot="1234567890" /> 
+        {/* replace with your real AdSense slot ID */}
+      </div>
 
       {/* How It Works Section */}
       <section className="max-w-4xl mx-auto my-12 px-4">
