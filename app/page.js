@@ -4,10 +4,10 @@ import AdUnit from "../components/AdUnit";
 export default function HomePage() {
   return (
     <main className="min-h-screen flex flex-col items-center relative px-6 py-12">
-
       {/* Hero Section */}
       <UploadForm autoDownload={true} />
 
+      {/* Intro Section */}
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold text-center mb-6">
           Free Online JPG to PDF Converter
@@ -15,9 +15,7 @@ export default function HomePage() {
         <p className="text-lg text-gray-700 text-center mb-8">
           Convert JPG, PNG, and WebP images to PDF instantly. Adjust page
           orientation, set margins, merge multiple files into a single PDF,
-          and download high-quality PDFs securely online for free. Our online
-          converter is fast, safe, and works on any device without installation
-          or registration.
+          and download high-quality PDFs securely online for free.
         </p>
         <p className="text-lg text-gray-700 text-center">
           With JPGStoPDF, you can create professional PDFs for work, school, or
@@ -26,21 +24,10 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* ✅ AdSense ad placement (homepage only) */}
+      {/* ✅ AdSense Ad Slot (only one for approval) */}
       <div className="my-8 flex justify-center">
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block", textAlign: "center" }}
-          data-ad-client="ca-pub-2964380688781577"
-          data-ad-slot="1234567890"   // 👈 replace with your AdSense slot ID
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
-          }}
-        />
+        <AdUnit adSlot="1234567890" />
+        {/* Replace 1234567890 with your real AdSense slot ID */}
       </div>
 
       {/* Why Choose Section */}
@@ -57,11 +44,6 @@ export default function HomePage() {
           <li>Files are automatically deleted after processing to protect privacy.</li>
         </ul>
       </section>
-
-      <div className="my-8 flex justify-center">
-        <AdUnit adSlot="1234567890" /> 
-        {/* replace with your real AdSense slot ID */}
-      </div>
 
       {/* How It Works Section */}
       <section className="max-w-4xl mx-auto my-12 px-4">
@@ -85,17 +67,18 @@ export default function HomePage() {
         <p className="text-gray-700 text-lg leading-relaxed mb-4">
           JPGStoPDF is a free online tool that allows you to convert your images
           (JPG, PNG, WebP) into PDF format within seconds. You can merge multiple
-          images, adjust page orientation, set margins, and create professional-quality
-          PDFs without installing any software. 
+          images, adjust page orientation, set margins, and create
+          professional-quality PDFs without installing any software.
         </p>
         <p className="text-gray-700 text-lg leading-relaxed mb-4">
-          Our service is fast, secure, and works on any device – desktop, tablet, or mobile.
-          No registration is required, and your files are automatically deleted after processing
-          to protect your privacy.
+          Our service is fast, secure, and works on any device – desktop, tablet,
+          or mobile. No registration is required, and your files are automatically
+          deleted after processing to protect your privacy.
         </p>
         <p className="text-gray-700 text-lg leading-relaxed">
           Whether you are creating documents for work, school, or personal use,
-          JPGStoPDF provides a reliable and easy-to-use solution for all your PDF conversion needs.
+          JPGStoPDF provides a reliable and easy-to-use solution for all your PDF
+          conversion needs.
         </p>
       </section>
     </main>
