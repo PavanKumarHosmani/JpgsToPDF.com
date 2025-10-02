@@ -5,8 +5,8 @@ export default function HomePage() {
     <main className="min-h-screen flex flex-col items-center relative px-6 py-12">
 
       {/* Hero Section */}
+      <UploadForm autoDownload={true} />
 
-            <UploadForm autoDownload={true} />
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold text-center mb-6">
           Free Online JPG to PDF Converter
@@ -16,8 +16,7 @@ export default function HomePage() {
           orientation, set margins, merge multiple files into a single PDF,
           and download high-quality PDFs securely online for free. Our online
           converter is fast, safe, and works on any device without installation
-          or registration. Whether you need a single file or want to merge
-          multiple images, JPGStoPDF makes it simple and reliable for all users.
+          or registration.
         </p>
         <p className="text-lg text-gray-700 text-center">
           With JPGStoPDF, you can create professional PDFs for work, school, or
@@ -26,14 +25,28 @@ export default function HomePage() {
         </p>
       </section>
 
+      {/* ✅ AdSense ad placement (homepage only) */}
+      <div className="my-8 flex justify-center">
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", textAlign: "center" }}
+          data-ad-client="ca-pub-2964380688781577"
+          data-ad-slot="1234567890"   // 👈 replace with your AdSense slot ID
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(adsbygoogle = window.adsbygoogle || []).push({});`,
+          }}
+        />
+      </div>
+
       {/* Why Choose Section */}
       <section className="max-w-4xl mx-auto my-12 px-4">
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Why Choose JPGStoPDF?
         </h2>
-        <p className="text-gray-700 text-center mb-4">
-          Our tool is designed to be simple, fast, and versatile for anyone who needs high-quality PDF conversion.
-        </p>
         <ul className="list-disc list-inside space-y-2 text-gray-700">
           <li>Convert JPG, PNG, WebP to PDF instantly.</li>
           <li>Merge multiple images into a single PDF.</li>
@@ -49,9 +62,6 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold mb-4 text-center">
           How It Works
         </h2>
-        <p className="text-gray-700 text-center mb-4">
-          Using JPGStoPDF is quick and straightforward. Follow these steps:
-        </p>
         <ol className="list-decimal list-inside space-y-2 text-gray-700">
           <li>Upload images using the form above.</li>
           <li>Arrange them in the order you want for your PDF.</li>
