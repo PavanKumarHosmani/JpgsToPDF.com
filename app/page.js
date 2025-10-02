@@ -1,3 +1,4 @@
+// app/page.js
 import UploadForm from "../components/UploadForm";
 import AdUnit from "../components/AdUnit";
 
@@ -24,9 +25,9 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* ✅ AdSense Ad Slot (only one for approval) */}
+      {/* ✅ One Ad Slot (manual, no auto-ads conflict) */}
       <div className="my-8 flex justify-center">
-        <AdUnit adSlot="1234567890" />
+        <AdUnit adSlot="1234567890" /> 
         {/* Replace 1234567890 with your real AdSense slot ID */}
       </div>
 

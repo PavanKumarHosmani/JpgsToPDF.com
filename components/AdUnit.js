@@ -1,5 +1,4 @@
-"use client"; // important for Next.js App Router
-
+"use client";
 import { useEffect } from "react";
 
 export default function AdUnit({ adSlot }) {
@@ -16,7 +15,7 @@ export default function AdUnit({ adSlot }) {
       className="adsbygoogle"
       style={{ display: "block", width: "100%", minHeight: "250px" }}
       data-ad-client="ca-pub-2964380688781577"
-      data-ad-slot={adSlot} // pass different slot IDs if you want multiple
+      data-ad-slot={adSlot}
       data-ad-format="auto"
       data-full-width-responsive="true"
     ></ins>
