@@ -1,9 +1,10 @@
+// app/robots.ts
 export default function robots() {
   return {
     rules: [
       {
         userAgent: "*",
-        allow: ["/_next/static/"],
+        allow: ["/_next/static/", "/*.js$", "/*.css$"],
         disallow: ["/api/", "/admin/", "/node_modules/", "/private/"],
       },
     ],
