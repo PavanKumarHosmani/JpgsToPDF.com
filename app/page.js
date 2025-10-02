@@ -27,7 +27,7 @@ export default function HomePage() {
 
       {/* ✅ One Ad Slot (manual, no auto-ads conflict) */}
       <div className="my-8 flex justify-center">
-        <AdUnit adSlot="1234567890" /> 
+        <AdUnit /> 
         {/* Replace 1234567890 with your real AdSense slot ID */}
       </div>
 
