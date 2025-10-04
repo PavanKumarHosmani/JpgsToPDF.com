@@ -50,8 +50,6 @@ export default function RootLayout({ children }) {
       <head>
         {/* ✅ AdSense verification (no duplicates) */}
         <meta name="google-adsense-account" content="ca-pub-2964380688781577" />
-        <link rel="canonical" href="https://www.jpgstopdf.com/" />
-
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"

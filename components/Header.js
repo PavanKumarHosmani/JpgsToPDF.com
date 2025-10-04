@@ -9,13 +9,11 @@ export default function Header() {
         </Link>
         <nav className="space-x-6">
           <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/aboutus" className="hover:underline">About Us</Link>
-          <Link href="/faq" className="hover:underline">FAQ</Link>
-          <Link href="/contact" className="hover:underline">Contact</Link>
-          <Link href="/privacy" className="hover:underline">Privacy</Link>
-          <Link href="/TermsandConditions" className="hover:underline">Terms and Conditions</Link>
-          <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
+          <Link href="/compress" className="hover:underline">Compress Images</Link>
+          <Link href="/mergepdf" className="hover:underline">merge pdf</Link>
+          <Link href="/pdftojpg" className="hover:underline">Pdf To Jpg</Link>
         </nav>
+
       </div>
     </header>
   );
