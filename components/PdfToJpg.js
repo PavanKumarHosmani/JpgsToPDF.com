@@ -10,6 +10,11 @@ export default function PdfToJpg() {
     setFiles(Array.from(e.target.files));
   };
 
+  const handleFileChange = (event) => {
+    const selectedFiles = Array.from(event.target.files);
+    setFiles(selectedFiles);
+  };
+
   const handleConvert = async () => {
     if (files.length === 0) {
       alert("Please select PDF files first.");
@@ -76,10 +81,16 @@ export default function PdfToJpg() {
 
       <input
         type="file"
-        multiple
         accept="application/pdf"
-        onChange={handleFiles}
-        className="mb-4 block"
+        multiple
+        onChange={handleFileChange}
+        className="block w-full text-sm text-gray-700 
+                   file:mr-4 file:py-2 file:px-4 
+                   file:rounded-full file:border-0 
+                   file:text-sm file:font-semibold
+                   file:bg-blue-50 file:text-blue-600
+                   hover:file:bg-blue-100
+                   cursor-pointer"
       />
 
       <button

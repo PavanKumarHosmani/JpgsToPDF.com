@@ -10,6 +10,10 @@ export default function MergePdf() {
     setFiles(Array.from(e.target.files));
   };
 
+    const handleFileChange = (event) => {
+    setFiles(Array.from(event.target.files));
+  };
+  
   const handleMerge = async () => {
     if (files.length < 2) {
       alert("Please select at least 2 PDF files.");
@@ -71,12 +75,18 @@ export default function MergePdf() {
     <div className="p-8 border rounded-lg shadow-md bg-white max-w-lg mx-auto">
       <h2 className="text-xl font-semibold mb-4">Merge Your PDFs</h2>
 
-      <input
+<input
         type="file"
-        multiple
         accept="application/pdf"
-        onChange={handleFiles}
-        className="mb-4 block"
+        multiple
+        onChange={handleFileChange}
+        className="block w-full text-sm text-gray-700 
+                   file:mr-4 file:py-2 file:px-4 
+                   file:rounded-full file:border-0 
+                   file:text-sm file:font-semibold
+                   file:bg-green-50 file:text-green-600
+                   hover:file:bg-green-100
+                   cursor-pointer"
       />
 
       <button
