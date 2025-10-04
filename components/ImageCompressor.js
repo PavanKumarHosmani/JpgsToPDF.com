@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 export default function ImageCompressor() {
@@ -14,40 +16,41 @@ export default function ImageCompressor() {
     setLoading(true);
 
     try {
-      // 1. Get presigned upload URLs
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/v1/image/upload-urls`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fileCount: files.length }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/v1/image/upload-urls`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fileCount: files.length }),
+        }
+      );
       const { operationId, uploadUrls } = await res.json();
 
-      // 2. Upload + compress each file
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const { fileKey, url } = uploadUrls[i];
 
-        // Upload to S3
         await fetch(url, {
           method: "PUT",
           headers: { "Content-Type": file.type },
           body: file,
         });
 
-        // Trigger compression
-        const compressRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/v1/image/compress/start`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            operationId,
-            fileKey,
-            targetSizeKb: targetSize,
-          }),
-        });
+        const compressRes = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE}/api/v1/image/compress/start`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              operationId,
+              fileKey,
+              targetSizeKb: targetSize,
+            }),
+          }
+        );
 
         const { downloadUrl } = await compressRes.json();
 
-        // Direct browser download
         const a = document.createElement("a");
         a.href = downloadUrl;
         a.download = file.name.replace(/\.(?=[^.]+$)/, "-compressed.");
@@ -67,6 +70,7 @@ export default function ImageCompressor() {
     <div className="p-6 border rounded-lg shadow-md bg-white max-w-lg mx-auto">
       <h2 className="text-xl font-semibold mb-4">Compress Your Images</h2>
 
+      <label className="block mb-2 font-medium">Select Images</label>
       <input
         type="file"
         multiple
@@ -75,6 +79,7 @@ export default function ImageCompressor() {
         className="mb-4 block"
       />
 
+      <label className="block mb-2 font-medium">Target Size (KB)</label>
       <input
         type="number"
         value={targetSize}

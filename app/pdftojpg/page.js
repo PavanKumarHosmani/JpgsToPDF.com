@@ -1,89 +1,48 @@
-"use client";
+import PdfToJpg from "../../components/PdfToJpg";
 
-import { useState } from "react";
+export const metadata = {
+  title: "PDF to JPG Converter - Free & Fast | JPGStoPDF",
+  description:
+    "Convert PDF pages to high-quality JPG images instantly. Free, fast, and secure online PDF to JPG converter.",
+  alternates: {
+    canonical: "https://www.jpgstopdf.com/to-jpg",
+  },
+  openGraph: {
+    title: "Convert PDF to JPG Online - Free & Fast",
+    description:
+      "Easily convert PDF documents into JPG images. Free, fast, secure, and works in your browser.",
+    url: "https://www.jpgstopdf.com/to-jpg",
+    siteName: "JPGStoPDF",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PDF to JPG Converter - Free & Fast",
+    description:
+      "Free online tool to convert PDF pages into JPG images instantly.",
+  },
+};
 
-export default function PdfToJpgPage() {
-  const [files, setFiles] = useState([]);
-  const [downloading, setDownloading] = useState(false);
-
-  const handleFiles = (e) => {
-    setFiles(Array.from(e.target.files));
-  };
-
-  const handleConvert = async () => {
-    if (files.length === 0) {
-      alert("Please select PDF files first.");
-      return;
-    }
-
-    setDownloading(true);
-
-    try {
-      // 1️⃣ Request upload URLs
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/v1/pdf-to-jpg/upload-urls`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fileCount: files.length }),
-      });
-
-      const { operationId, uploadUrls } = await res.json();
-
-      // 2️⃣ Upload each file to S3
-      for (let i = 0; i < files.length; i++) {
-        await fetch(uploadUrls[i].uploadUrl, {
-          method: "PUT",
-          headers: { "Content-Type": "application/pdf" },
-          body: files[i],
-        });
-      }
-
-      // 3️⃣ Trigger conversion
-      const fileKeys = uploadUrls.map((u) => u.fileKey);
-      const convRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/v1/pdf/to-jpg/batch`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ operationId, fileKeys }),
-      });
-
-      const { results } = await convRes.json();
-
-      // 4️⃣ Auto-download each ZIP
-      results.forEach(({ fileKey, downloadUrl }) => {
-        const link = document.createElement("a");
-        link.href = downloadUrl;
-        link.download = fileKey.split("/").pop(); // filename.zip
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-
-    } catch (err) {
-      console.error("Conversion failed:", err);
-      alert("Conversion failed, check console.");
-    } finally {
-      setDownloading(false);
-    }
-  };
-
+export default function ToJpgPage() {
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">PDF to JPG Converter</h1>
+    <main className="max-w-3xl mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-6">PDF to JPG Converter</h1>
+      <p className="mb-6 text-gray-700">
+        Upload your PDFs and convert them into high-quality JPG images instantly.
+        Download results as ZIP files directly from your browser.
+      </p>
 
-      <input
-        type="file"
-        multiple
-        accept="application/pdf"
-        onChange={handleFiles}
-        className="mb-4"
-      />
+      <PdfToJpg />
 
-      <button
-        onClick={handleConvert}
-        disabled={downloading}
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
-      >
-        {downloading ? "Converting..." : "Convert to JPG"}
-      </button>
-    </div>
+      <section className="mt-10 text-gray-600">
+        <h2 className="text-2xl font-semibold mb-4">Why choose our PDF to JPG tool?</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>📸 Convert each PDF page into a JPG image</li>
+          <li>⚡ Fast conversion powered by S3 streaming</li>
+          <li>💻 Works in your browser, no software needed</li>
+          <li>🔒 Secure — files auto-deleted after processing</li>
+        </ul>
+      </section>
+    </main>
   );
 }
