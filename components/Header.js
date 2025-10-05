@@ -2,21 +2,21 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-blue-700 text-white py-6 shadow-md">
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-6">
-        <Link href="/" className="text-2xl font-bold">
+    <header className="sticky top-0 z-50 bg-blue-700 text-white shadow-md">
+      <div className="max-w-6xl mx-auto flex flex-wrap justify-between items-center px-4 py-3 md:py-5">
+        {/* Logo */}
+        <Link href="/" className="text-lg md:text-2xl font-bold">
           JPGStoPDF
         </Link>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <nav className="space-x-6">
+        {/* Navigation - always visible */}
+        <nav className="flex flex-wrap gap-3 md:gap-6 text-sm md:text-base mt-2 md:mt-0">
           <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/jpgtopdf" className="hover:underline">Jpg To Pdf</Link>
+          <Link href="/jpgtopdf" className="hover:underline">JPG to PDF</Link>
           <Link href="/compressimage" className="hover:underline">Compress Images</Link>
-          <Link href="/mergepdf" className="hover:underline">Merge pdf</Link>
-          <Link href="/pdftojpg" className="hover:underline">Pdf To Jpg</Link>
+          <Link href="/mergepdf" className="hover:underline">Merge PDF</Link>
+          <Link href="/pdftojpg" className="hover:underline">PDF to JPG</Link>
         </nav>
-
       </div>
     </header>
   );
