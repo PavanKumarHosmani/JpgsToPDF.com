@@ -38,7 +38,7 @@ export default function ImageToPdf() {
 
       // 3️⃣ Trigger conversion
       const fileKeys = uploadUrls.map((u) => u.fileKey);
-      const convRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/v1/convert/start`, {
+      const convRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/convert/start`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ operationId, fileKeys }),

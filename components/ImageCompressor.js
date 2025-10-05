@@ -19,7 +19,7 @@ export default function ImageCompressor() {
     try {
       // 1️⃣ Request upload URLs
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/v1/image/upload-urls`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/upload-urls`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

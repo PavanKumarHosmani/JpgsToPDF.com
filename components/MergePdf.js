@@ -46,7 +46,7 @@ export default function MergePdf() {
       // 3️⃣ Trigger merge
       const fileKeys = uploadUrls.map((u) => u.fileKey);
       const mergeRes = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/v1/pdf/merge/start`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/pdf/merge/start`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
