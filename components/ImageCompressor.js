@@ -43,7 +43,7 @@ export default function ImageCompressor() {
 
         // Trigger compression
         const compressRes = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE}/api/v1/image/compress/start`,
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
