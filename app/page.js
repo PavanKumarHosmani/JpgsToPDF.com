@@ -61,7 +61,7 @@ export default function HomePage() {
           </p>
         </Link>
         <Link
-          href="/merge"
+          href="/mergepdf"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">Merge PDFs</h2>
@@ -70,7 +70,7 @@ export default function HomePage() {
           </p>
         </Link>
         <Link
-          href="/to-jpg"
+          href="/pdftojpg"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">PDF to JPG</h2>
@@ -79,7 +79,7 @@ export default function HomePage() {
           </p>
         </Link>
         <Link
-          href="/convert"
+          href="/jpgtopdf"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">Image to PDF</h2>
