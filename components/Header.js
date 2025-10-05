@@ -7,10 +7,13 @@ export default function Header() {
         <Link href="/" className="text-2xl font-bold">
           JPGStoPDF
         </Link>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <nav className="space-x-6">
           <Link href="/" className="hover:underline">Home</Link>
+          <Link href="/jpgtopdf" className="hover:underline">Jpg To Pdf</Link>
           <Link href="/compress" className="hover:underline">Compress Images</Link>
-          <Link href="/mergepdf" className="hover:underline">merge pdf</Link>
+          <Link href="/mergepdf" className="hover:underline">Merge pdf</Link>
           <Link href="/pdftojpg" className="hover:underline">Pdf To Jpg</Link>
         </nav>
 
