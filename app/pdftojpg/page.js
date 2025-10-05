@@ -69,6 +69,21 @@ export default function ToJpgPage() {
         </ul>
       </section>
 
+      <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold mb-4">Best Practices for Converting PDF to JPG</h2>
+          <p className="text-gray-700 mb-2">
+            Converting PDF pages to JPG images makes sharing and editing easier. Follow
+            these best practices:
+          </p>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Use JPG for smaller file size and easy sharing.</li>
+            <li>Ensure PDFs with images are converted at high quality for clarity.</li>
+            <li>Batch convert large PDFs into ZIP files for convenience.</li>
+            <li>Perfect for creating presentations, sharing notes, or printing visuals.</li>
+          </ul>
+        </section>
+
+
       {/* ✅ FAQ */}
       <section className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>

@@ -35,6 +35,34 @@ export default function ConvertPage() {
           <li>Supports JPG, PNG, and WebP formats</li>
         </ul>
       </section>
+      <section className="max-w-4xl mx-auto mb-16">
+  <h2 className="text-2xl font-bold mb-4">Everything About JPG to PDF Conversion</h2>
+  <p className="text-gray-700 mb-4">
+    JPG to PDF conversion is one of the most commonly used tools on our
+    website. It allows you to take one or multiple images and turn them into a
+    single, shareable PDF file in just seconds. Our converter keeps the original
+    image quality intact, so your photos, scanned documents, or graphics look
+    exactly as expected.
+  </p>
+  <p className="text-gray-700 mb-4">
+    Unlike heavy desktop software, our JPG to PDF tool works directly in your
+    browser. There’s no need to download or install anything — simply upload
+    your images, arrange them in the order you prefer, and download your PDF.
+    The process is fast, secure, and works on any device — mobile, tablet, or
+    desktop.
+  </p>
+  <ul className="list-disc list-inside text-gray-700 space-y-2">
+    <li>✅ Convert multiple JPG images into a single PDF instantly.</li>
+    <li>✅ Maintain original image quality without blurry results.</li>
+    <li>✅ Works with JPG, PNG, and WebP images seamlessly.</li>
+    <li>✅ Safe & secure — files are auto-deleted after processing.</li>
+  </ul>
+  <p className="text-gray-700 mt-4">
+    Whether you’re submitting scanned assignments, creating a photo album, or
+    organizing receipts, our free JPG to PDF converter is the perfect solution.
+  </p>
+</section>
+
     </main>
   );
 }

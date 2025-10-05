@@ -52,7 +52,7 @@ export default function HomePage() {
       {/* Tool Grid */}
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-16">
         <Link
-          href="/compress"
+          href="/compressimage"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">Compress Images</h2>
@@ -99,6 +99,64 @@ export default function HomePage() {
           <li>💯 Always free to use without limits</li>
         </ul>
       </section>
+
+      {/* JPG to PDF Section */}
+<section className="max-w-5xl mx-auto mb-16 px-4">
+  <h2 className="text-2xl font-bold mb-4">JPG to PDF Converter – Free Online Tool</h2>
+  <p className="text-gray-700 mb-4">
+    Convert your JPG, PNG, or WebP images into a single PDF instantly. Our free JPG to PDF
+    converter works online, requires no installation, and keeps your original image quality intact.
+    Perfect for photo albums, scanned homework, or professional reports.
+  </p>
+  <ul className="list-disc list-inside text-gray-700 space-y-2">
+    <li>✅ Combine multiple images into one PDF.</li>
+    <li>✅ Works on any device – desktop or mobile.</li>
+    <li>✅ Secure and private – files auto-delete after processing.</li>
+  </ul>
+</section>
+
+{/* Merge PDF Section */}
+<section className="max-w-5xl mx-auto mb-16 px-4">
+  <h2 className="text-2xl font-bold mb-4">Merge PDF Files Online</h2>
+  <p className="text-gray-700 mb-4">
+    Need to combine multiple PDF documents into one? Our Merge PDF tool makes it simple. Just upload
+    your files, arrange them in the order you want, and download your single merged PDF in seconds.
+  </p>
+  <ul className="list-disc list-inside text-gray-700 space-y-2">
+    <li>✅ Merge unlimited PDFs quickly.</li>
+    <li>✅ Preserve formatting and document quality.</li>
+    <li>✅ No software download needed – runs in your browser.</li>
+  </ul>
+</section>
+
+{/* Compress Images Section */}
+<section className="max-w-5xl mx-auto mb-16 px-4">
+  <h2 className="text-2xl font-bold mb-4">Compress Images – Reduce File Size Without Losing Quality</h2>
+  <p className="text-gray-700 mb-4">
+    Upload your images and compress them to a smaller size while maintaining excellent quality.
+    This makes sharing, emailing, and uploading much faster without blurry or pixelated results.
+  </p>
+  <ul className="list-disc list-inside text-gray-700 space-y-2">
+    <li>✅ Shrink file size for faster uploads.</li>
+    <li>✅ Works with JPG, PNG, and WebP formats.</li>
+    <li>✅ Perfect for websites, email, and storage saving.</li>
+  </ul>
+</section>
+
+{/* PDF to JPG Section */}
+<section className="max-w-5xl mx-auto mb-16 px-4">
+  <h2 className="text-2xl font-bold mb-4">PDF to JPG Converter – Extract Pages as Images</h2>
+  <p className="text-gray-700 mb-4">
+    Turn your PDF pages into high-quality JPG images with our easy-to-use converter. Extract pages
+    as individual images for presentations, notes, or quick sharing.
+  </p>
+  <ul className="list-disc list-inside text-gray-700 space-y-2">
+    <li>✅ Convert entire PDFs or select pages to JPG.</li>
+    <li>✅ Fast conversion with sharp image quality.</li>
+    <li>✅ 100% free, secure, and works on all devices.</li>
+  </ul>
+</section>
+
 
       {/* FAQ */}
       <section className="max-w-3xl mx-auto">

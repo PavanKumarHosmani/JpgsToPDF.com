@@ -67,6 +67,22 @@ export default function MergePage() {
         </ul>
       </section>
 
+      <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold mb-4">Why Merge PDFs Online?</h2>
+          <p className="text-gray-700 mb-2">
+            Merging PDFs helps keep your documents organized and easy to share. Instead
+            of sending multiple files, you can send one combined PDF. This is useful
+            for:
+          </p>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>Students combining lecture notes or assignments.</li>
+            <li>Professionals merging contracts, invoices, and reports.</li>
+            <li>Creating digital booklets or eBooks from separate PDFs.</li>
+            <li>Archiving documents for safe storage and quick access.</li>
+          </ul>
+        </section>
+
+
       {/* ✅ FAQ */}
       <section className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>

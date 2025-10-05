@@ -72,6 +72,21 @@ export default function CompressPage() {
         </ul>
       </section>
 
+      <section className="max-w-4xl mx-auto mb-16">
+        <h2 className="text-2xl font-bold mb-4">Tips for Compressing Images</h2>
+        <p className="text-gray-700 mb-2">
+          Image compression is important for faster website loading, easy sharing,
+          and reduced storage usage. Here are some tips:
+        </p>
+        <ul className="list-disc list-inside text-gray-700 space-y-2">
+          <li>Use JPG for photographs and PNG for graphics with transparency.</li>
+          <li>Resize large images before uploading for best results.</li>
+          <li>Our compressor balances quality and size automatically.</li>
+          <li>For websites, smaller file sizes improve SEO and user experience.</li>
+        </ul>
+      </section>
+
+
       {/* ✅ FAQ Section */}
       <section className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">
