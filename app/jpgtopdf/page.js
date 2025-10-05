@@ -61,6 +61,43 @@ export default function ConvertPage() {
     Whether you’re submitting scanned assignments, creating a photo album, or
     organizing receipts, our free JPG to PDF converter is the perfect solution.
   </p>
+  <p className="mb-4">
+  The <strong>JPG to PDF Converter</strong> from JPGStoPDF.COM makes it
+  quick and easy to turn your images into high-quality PDF documents.
+  Whether you have a single photo or multiple images, you can combine
+  them into one neatly organized PDF in just a few clicks. This is ideal
+  for creating digital photo albums, sharing assignments, or submitting
+  official documents that require PDF format.
+</p>
+
+<p className="mb-4">
+  Our tool supports JPG, PNG, and other common image types, so you don’t
+  have to worry about compatibility. Simply upload your pictures and let
+  our system handle the conversion while preserving original image
+  quality. The process is completely secure, with all files automatically
+  deleted after conversion to protect your privacy.
+</p>
+
+<p className="mb-4">
+  Using our JPG to PDF converter is straightforward: upload your images,
+  arrange them in the order you want, and click convert. In seconds, you
+ ’ll receive a downloadable PDF file. You can combine multiple images at
+  once, making it much faster than manual methods or offline software.
+</p>
+
+<p className="mb-4">
+  Unlike many other free tools, JPGStoPDF.COM does not add watermarks,
+  limitations, or hidden charges. Our service works across all devices,
+  whether you’re on a computer, tablet, or mobile phone, so you can
+  convert images to PDF anytime and anywhere.
+</p>
+
+<p className="mb-8">
+  Start converting your images today with our trusted
+  <strong> free JPG to PDF online tool</strong>. Enjoy the convenience of
+  professional-quality PDFs without the need for downloads or expensive
+  software.
+</p>
 </section>
 
     </main>

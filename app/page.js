@@ -188,6 +188,16 @@ export default function HomePage() {
             </p>
           </details>
         </div>
+        <section className="my-12">
+  <h2 className="text-2xl font-bold mb-4">Free, Secure, and Easy-to-Use File Conversion</h2>
+  <p className="mb-4">
+    One of the biggest concerns when using online tools is file safety. At JPGStoPDF.COM, we guarantee your privacy. All uploads are processed securely and deleted automatically after conversion. This makes it safe to handle personal documents, professional contracts, or academic materials. No one has access to your files except you.
+  </p>
+  <p>
+    Our tools are also designed to be mobile-friendly, ensuring a smooth experience whether you’re on a desktop computer or a smartphone. With a clean interface, clear instructions, and quick downloads, anyone can use the platform without technical skills. By keeping the service free and user-focused, we ensure that everyone—from students to professionals—can complete their tasks without hassle. If you are looking for <strong>fast, secure, and free file conversion</strong>, our platform is the perfect choice.
+  </p>
+</section>
+
       </section>
 
       {/* JSON-LD Structured Data */}

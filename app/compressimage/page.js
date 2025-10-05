@@ -1,23 +1,23 @@
 import ImageCompressor from "../../components/ImageCompressor";
 
 export const metadata = {
-  title: "Online Image Compressor - Free & Fast | JPGStoPDF",
+  title: "Image Compressor - Reduce Image Size online | JPGStoPDF",
   description:
     "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
   alternates: {
-    canonical: "https://www.jpgstopdf.com/compress",
+    canonical: "https://www.jpgstopdf.com/compressimage",
   },
   openGraph: {
-    title: "Online Image Compressor - Free & Fast",
+    title: "Image Compressor - Reduce Image Size online",
     description:
       "Easily compress images (JPG, PNG, etc.) online. Save space and optimize your images for faster websites.",
-    url: "https://www.jpgstopdf.com/compress",
+    url: "https://www.jpgstopdf.com/compressimage",
     siteName: "JPGStoPDF",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Image Compressor - Free & Fast",
+    title: "Image Compressor - Reduce Image Size online",
     description:
       "Compress images instantly with our free online tool. Reduce size, keep quality.",
   },
@@ -119,6 +119,42 @@ export default function CompressPage() {
               compression.
             </p>
           </details>
+          <p className="mb-4">
+  The <strong>Compress Images tool</strong> from JPGStoPDF.COM helps you
+  reduce the file size of your photos quickly and securely. Upload your
+  JPG, PNG, or other image formats and our system will compress them
+  without noticeable loss of quality. Smaller files mean faster sharing,
+  easier uploads, and more storage space saved.
+</p>
+
+<p className="mb-4">
+  This tool is designed for everyone—students submitting assignments,
+  professionals optimizing images for presentations, or website owners
+  improving page speed with lightweight graphics. You don’t need to
+  install software; everything runs directly in your browser. All
+  uploaded files are processed securely and deleted automatically after
+  compression, keeping your privacy safe.
+</p>
+
+<p className="mb-4">
+  Using our image compressor is simple: just upload your images, choose
+  your preferred compression level, and download the optimized files
+  instantly. You can compress multiple images at once, making it a fast
+  and reliable option for batch processing.
+</p>
+
+<p className="mb-4">
+  Unlike many free tools, JPGStoPDF.COM does not add watermarks or hidden
+  restrictions. We believe in providing free, high-quality online tools
+  that work seamlessly across devices. Whether you’re on a laptop,
+  tablet, or smartphone, you can compress images online anytime.
+</p>
+
+<p className="mb-8">
+  Start reducing your file sizes today with JPGStoPDF.COM’s trusted
+  <strong> free image compression tool</strong> and enjoy faster uploads,
+  smoother sharing, and more efficient storage.
+</p>
         </div>
 
         {/* ✅ FAQ Schema Markup */}

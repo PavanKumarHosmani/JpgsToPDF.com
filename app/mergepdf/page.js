@@ -80,6 +80,44 @@ export default function MergePage() {
             <li>Creating digital booklets or eBooks from separate PDFs.</li>
             <li>Archiving documents for safe storage and quick access.</li>
           </ul>
+          <p className="mb-4">
+  The <strong>Merge PDF tool</strong> from JPGStoPDF.COM allows you to
+  quickly combine multiple PDF documents into a single, organized file.
+  Whether you need to merge assignments, business reports, or scanned
+  pages, our tool ensures a smooth and professional result without any
+  effort. No installation or software download is required—everything
+  works directly in your browser.
+</p>
+
+<p className="mb-4">
+  Many users need to combine PDFs for everyday tasks: students joining
+  project reports, professionals compiling invoices, or teachers merging
+  study materials. With our online service, you can upload multiple PDF
+  files at once and arrange them in the order you prefer before merging.
+  The entire process takes just seconds and maintains the original
+  formatting of your documents.
+</p>
+
+<p className="mb-4">
+  Our tool is designed for speed, security, and simplicity. All files are
+  processed using encrypted connections and deleted automatically after
+  merging, keeping your documents private. You never have to worry about
+  your personal or sensitive files being stored or shared.
+</p>
+
+<p className="mb-4">
+  Unlike many free tools that limit the number of files or add unwanted
+  watermarks, JPGStoPDF.COM provides a <strong>completely free PDF merger</strong>
+  with no restrictions. It works seamlessly across devices—desktop,
+  laptop, tablet, or mobile—so you can merge PDFs anywhere, anytime.
+</p>
+
+<p className="mb-8">
+  Start combining your PDF files today with our reliable
+  <strong> online PDF merge tool</strong> and make document management
+  easier than ever. With just a few clicks, you’ll have a single PDF
+  ready for sharing, printing, or secure storage.
+</p>
         </section>
 
 
