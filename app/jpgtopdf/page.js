@@ -1,15 +1,15 @@
 import ImageToPdf from "../../components/ImageToPdf";
 
 export const metadata = {
-  title: "Image to PDF Converter | JPGStoPDF",
-  description: "Free online tool to convert JPG, PNG, and WebP images into a single PDF instantly.",
+  title: "JPG to PDF Converter | Images JPG to PDF online",
+  description: "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
   alternates: {
-    canonical: "https://www.jpgstopdf.com/convert",
+    canonical: "https://www.jpgstopdf.com/jpgtopdf",
   },
   openGraph: {
-    title: "Image to PDF Converter | JPGStoPDF",
-    description: "Fast & secure online image to PDF conversion. Convert JPG, PNG, and WebP images into PDF with one click.",
-    url: "https://www.jpgstopdf.com/convert",
+    title: "JPG to PDF Converter | Images JPG to PDF online",
+    description: "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
+    url: "https://www.jpgstopdf.com/jpgtopdf",
     siteName: "JPGStoPDF",
     type: "website",
   },
@@ -18,7 +18,7 @@ export const metadata = {
 export default function ConvertPage() {
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-6">Image to PDF Converter</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">JPG to PDF Converter</h1>
       <p className="text-gray-600 text-center max-w-2xl mx-auto mb-8">
         Upload your images (JPG, PNG, WebP) and convert them into a single PDF instantly. 
         100% free, secure, and fast.

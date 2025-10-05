@@ -48,15 +48,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ AdSense verification (no duplicates) */}
+        {/* ✅ AdSense verification meta tag (kept as requested) */}
         <meta name="google-adsense-account" content="ca-pub-2964380688781577" />
+
+        {/* ✅ AdSense script (kept as requested) */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
           crossOrigin="anonymous"
         ></script>
 
-        {/* ✅ Google Analytics (replace G-XXXXXXXXXX with your ID) */}
+        {/* ✅ Google Analytics (unchanged) */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
@@ -77,7 +79,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
 
-        {/* ✅ Structured Data for SEO */}
+        {/* ✅ Structured Data for SEO (unchanged) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -85,7 +87,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "WebPage",
               url: "https://www.jpgstopdf.com/",
-              name: "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
+              name:
+                "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
               description:
                 "Convert JPG, PNG, and WebP images to PDF instantly. Adjust orientation, margins, merge multiple files, and download high-quality PDFs online for free.",
               publisher: {

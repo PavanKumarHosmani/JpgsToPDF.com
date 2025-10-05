@@ -1,12 +1,12 @@
 import PdfToJpg from "../../components/PdfToJpg";
 
 export const metadata = {
-  title: "Convert PDF to JPG Online - Free & Fast | JPGStoPDF",
+  title: "PDF to JPG Converter - Convert Your PDF to Image Online",
   description:
     "Convert PDF pages into JPG images instantly online. Free, secure, and fast PDF to JPG converter.",
   alternates: { canonical: "https://www.jpgstopdf.com/to-jpg" },
   openGraph: {
-    title: "Convert PDF to JPG Online - Free & Fast",
+    title: "PDF to JPG Converter - Convert Your PDF to Image Online",
     description:
       "Easily convert PDF pages into JPG images with our free online tool. Fast, secure, and browser-based.",
     url: "https://www.jpgstopdf.com/to-jpg",
@@ -15,7 +15,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convert PDF to JPG Online - Free & Fast",
+    title: "PDF to JPG Converter - Convert Your PDF to Image Online",
     description:
       "Convert PDF files into high-quality JPG images instantly. Free, secure, and works online.",
   },
