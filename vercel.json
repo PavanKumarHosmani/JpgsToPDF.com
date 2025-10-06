@@ -11,14 +11,14 @@
       "permanent": true
     },
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "jpgstopdf.com" }],
-      "destination": "https://www.jpgstopdf.com/:path*",
+      "source": "/:path*/",
+      "destination": "/:path*",
       "permanent": true
     },
     {
-      "source": "/:path*/",
-      "destination": "/:path*",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "jpgstopdf.com" }],
+      "destination": "https://www.jpgstopdf.com/:path*",
       "permanent": true
     }
   ]
