@@ -1,12 +1,12 @@
 import MergePdf from "../../components/MergePdf";
 
 export const metadata = {
-  title: "Merge PDF - Free online PDF Merger",
+  title: "Merge PDF - Free online PDF Merger fast and secure",
   description:
     "Merge multiple PDF files into a single PDF online. Free, fast, and secure tool for combining PDFs easily in your browser.",
   alternates: { canonical: "https://www.jpgstopdf.com/mergepdf" },
   openGraph: {
-    title: "Merge PDF - Free online PDF Merger",
+    title: "Merge PDF - Free online PDF Merger fast and secure",
     description:
       "Combine multiple PDF files into one document with our free online PDF merger. Fast, secure, and browser-based.",
     url: "https://www.jpgstopdf.com/mergepdf",
@@ -15,7 +15,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Merge PDF - Free online PDF Merger",
+    title: "Merge PDF - Free online PDF Merger fast and secure",
     description:
       "Easily merge multiple PDF files into one. Free, secure, and works directly in your browser.",
   },

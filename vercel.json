@@ -15,6 +15,11 @@
       "source": "/index.php",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/:path*/",
+      "destination": "/:path*",
+      "permanent": true
     }
   ]
 }
