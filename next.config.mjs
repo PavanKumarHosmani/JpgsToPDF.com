@@ -2,13 +2,13 @@
 const nextConfig = {
   async redirects() {
     return [
-      // Remove index.html or index.php from any path (works with or without www)
+      // 1. Strip index.html or index.php from any path (both www & non-www)
       {
-        source: '/:path*/index{.:format}?', // matches index.html or index.php
+        source: '/:path*/index(.html|.php)',
         destination: '/:path*',
         permanent: true,
       },
-      // Remove trailing slash (only HTML requests, not assets)
+      // 2. Remove trailing slash (only for HTML requests, not assets)
       {
         source: '/:path*/',
         has: [
@@ -21,7 +21,7 @@ const nextConfig = {
         destination: '/:path*',
         permanent: true,
       },
-      // Non-www → www
+      // 3. Force non-www → www
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'jpgstopdf.com' }],
