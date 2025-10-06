@@ -5,14 +5,13 @@ export const metadata = {
   description:
     "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
   alternates: {
-    canonical: "https://www.jpgstopdf.com/compressimage",
+    canonical: "/compressimage", // ✅ relative, resolves with metadataBase
   },
   openGraph: {
     title: "Image Compressor - Reduce Image Size online",
-    
     description:
       "Easily compress images (JPG, PNG, etc.) online. Save space and optimize your images for faster websites.",
-    url: "https://www.jpgstopdf.com/compressimage",
+    url: "/compressimage", // ✅ matches canonical
     siteName: "JPGStoPDF",
     type: "website",
   },
@@ -35,7 +34,7 @@ export default function CompressPage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "JPGStoPDF - Online Image Compressor",
-            url: "https://www.jpgstopdf.com/compressimage",
+            url: "https://www.jpgstopdf.com/compressimage", // ✅ fixed to match canonical
             description:
               "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
             applicationCategory: "Utility",
@@ -76,17 +75,18 @@ export default function CompressPage() {
       <section className="max-w-4xl mx-auto mb-16">
         <h2 className="text-2xl font-bold mb-4">Tips for Compressing Images</h2>
         <p className="text-gray-700 mb-2">
-          Image compression is important for faster website loading, easy sharing,
-          and reduced storage usage. Here are some tips:
+          Image compression is important for faster website loading, easy
+          sharing, and reduced storage usage. Here are some tips:
         </p>
         <ul className="list-disc list-inside text-gray-700 space-y-2">
           <li>Use JPG for photographs and PNG for graphics with transparency.</li>
           <li>Resize large images before uploading for best results.</li>
           <li>Our compressor balances quality and size automatically.</li>
-          <li>For websites, smaller file sizes improve SEO and user experience.</li>
+          <li>
+            For websites, smaller file sizes improve SEO and user experience.
+          </li>
         </ul>
       </section>
-
 
       {/* ✅ FAQ Section */}
       <section className="mt-12">
@@ -121,41 +121,41 @@ export default function CompressPage() {
             </p>
           </details>
           <p className="mb-4">
-  The <strong>Compress Images tool</strong> from JPGStoPDF.COM helps you
-  reduce the file size of your photos quickly and securely. Upload your
-  JPG, PNG, or other image formats and our system will compress them
-  without noticeable loss of quality. Smaller files mean faster sharing,
-  easier uploads, and more storage space saved.
-</p>
+            The <strong>Compress Images tool</strong> from JPGStoPDF.COM helps
+            you reduce the file size of your photos quickly and securely. Upload
+            your JPG, PNG, or other image formats and our system will compress
+            them without noticeable loss of quality. Smaller files mean faster
+            sharing, easier uploads, and more storage space saved.
+          </p>
 
-<p className="mb-4">
-  This tool is designed for everyone—students submitting assignments,
-  professionals optimizing images for presentations, or website owners
-  improving page speed with lightweight graphics. You don’t need to
-  install software; everything runs directly in your browser. All
-  uploaded files are processed securely and deleted automatically after
-  compression, keeping your privacy safe.
-</p>
+          <p className="mb-4">
+            This tool is designed for everyone—students submitting assignments,
+            professionals optimizing images for presentations, or website owners
+            improving page speed with lightweight graphics. You don’t need to
+            install software; everything runs directly in your browser. All
+            uploaded files are processed securely and deleted automatically after
+            compression, keeping your privacy safe.
+          </p>
 
-<p className="mb-4">
-  Using our image compressor is simple: just upload your images, choose
-  your preferred compression level, and download the optimized files
-  instantly. You can compress multiple images at once, making it a fast
-  and reliable option for batch processing.
-</p>
+          <p className="mb-4">
+            Using our image compressor is simple: just upload your images, choose
+            your preferred compression level, and download the optimized files
+            instantly. You can compress multiple images at once, making it a fast
+            and reliable option for batch processing.
+          </p>
 
-<p className="mb-4">
-  Unlike many free tools, JPGStoPDF.COM does not add watermarks or hidden
-  restrictions. We believe in providing free, high-quality online tools
-  that work seamlessly across devices. Whether you’re on a laptop,
-  tablet, or smartphone, you can compress images online anytime.
-</p>
+          <p className="mb-4">
+            Unlike many free tools, JPGStoPDF.COM does not add watermarks or
+            hidden restrictions. We believe in providing free, high-quality
+            online tools that work seamlessly across devices. Whether you’re on a
+            laptop, tablet, or smartphone, you can compress images online anytime.
+          </p>
 
-<p className="mb-8">
-  Start reducing your file sizes today with JPGStoPDF.COM’s trusted
-  <strong> free image compression tool</strong> and enjoy faster uploads,
-  smoother sharing, and more efficient storage.
-</p>
+          <p className="mb-8">
+            Start reducing your file sizes today with JPGStoPDF.COM’s trusted
+            <strong> free image compression tool</strong> and enjoy faster
+            uploads, smoother sharing, and more efficient storage.
+          </p>
         </div>
 
         {/* ✅ FAQ Schema Markup */}
