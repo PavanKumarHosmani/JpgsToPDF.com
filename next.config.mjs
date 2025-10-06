@@ -14,7 +14,7 @@ const nextConfig = {
         destination: '/:path*',
         permanent: true,
       },
-      // 3. Remove trailing slash (for HTML pages only, not static assets)
+      // 3. Remove trailing slash (HTML pages only, not static assets)
       {
         source: '/:path*/',
         has: [
@@ -27,7 +27,7 @@ const nextConfig = {
         destination: '/:path*',
         permanent: true,
       },
-      // 4. Non-www → www (this goes last so index + trailing slash cleanup happens first)
+      // 4. Non-www → www (kept last so others apply first)
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'jpgstopdf.com' }],
