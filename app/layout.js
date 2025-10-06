@@ -57,7 +57,8 @@ export default function RootLayout({ children }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
           crossOrigin="anonymous"
         ></script>
-
+         {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="icon" href="/favicon.ico" />
         {/* ✅ Google Analytics (unchanged) */}
         <script
           async

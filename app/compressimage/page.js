@@ -9,6 +9,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Image Compressor - Reduce Image Size online",
+    
     description:
       "Easily compress images (JPG, PNG, etc.) online. Save space and optimize your images for faster websites.",
     url: "https://www.jpgstopdf.com/compressimage",

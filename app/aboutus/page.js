@@ -18,6 +18,7 @@ export default function AboutPage() {
         <meta name="description" content={metadata.description} />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" href={canonicalUrl} hreflang="en-us" />
+        <link rel="icon" href="/favicon.ico" />
 
         {/* Open Graph & Twitter */}
         <meta property="og:title" content={metadata.title} />

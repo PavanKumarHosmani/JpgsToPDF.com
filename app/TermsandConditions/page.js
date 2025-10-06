@@ -15,6 +15,7 @@ export default function TermsPage() {
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" href={canonicalUrl} hreflang="en-us" />
+        <link rel="icon" href="/favicon.ico" />
 
         {/* OpenGraph */}
         <meta property="og:title" content={title} />

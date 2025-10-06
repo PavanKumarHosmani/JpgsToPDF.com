@@ -17,6 +17,7 @@ export default function ContactPage() {
         <link rel="alternate" href={canonicalUrl} hreflang="en-us" />
 
         {/* Open Graph */}
+        <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
@@ -61,9 +62,9 @@ export default function ContactPage() {
           At <strong>JPGStoPDF.COM</strong>, we value our users and strive to
           provide quick and reliable support. If you have any questions about our
           tools—whether it’s <a href="/compress" className="text-blue-600 underline">image compression</a>, 
-          <a href="/merge" className="text-blue-600 underline">PDF merging</a>, 
-          <a href="/to-jpg" className="text-blue-600 underline">PDF to JPG conversion</a>, 
-          or <a href="/convert" className="text-blue-600 underline">image to PDF conversion</a>—we’re here to help.
+          <a href="/mergepdf" className="text-blue-600 underline">PDF merging</a>, 
+          <a href="/pdftojpg" className="text-blue-600 underline">PDF to JPG conversion</a>, 
+          or <a href="/jpgtopdf" className="text-blue-600 underline">image to PDF conversion</a>—we’re here to help.
         </p>
 
         <p className="mb-4">

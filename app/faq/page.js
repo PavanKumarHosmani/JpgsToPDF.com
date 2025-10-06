@@ -40,6 +40,7 @@ export default function FAQPage() {
         <link rel="alternate" href={canonicalUrl} hreflang="en-us" />
 
         {/* OpenGraph */}
+        <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
