@@ -14,7 +14,7 @@ const nextConfig = {
         destination: '/:path*',
         permanent: true,
       },
-      // Remove trailing slash (for HTML pages only, not assets)
+      // Remove trailing slash (only for HTML requests, not assets)
       {
         source: '/:path*/',
         has: [
