@@ -2,26 +2,19 @@
 const nextConfig = {
   async redirects() {
     return [
-      // 1. Non-www → www
+      // 1. Remove index.html from any path
       {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'jpgstopdf.com' }],
-        destination: 'https://www.jpgstopdf.com/:path*',
+        source: '/:path*/index.html',
+        destination: '/:path*',
         permanent: true,
       },
-      // 2. index.html → /
+      // 2. Remove index.php from any path
       {
-        source: '/index.html',
-        destination: '/',
+        source: '/:path*/index.php',
+        destination: '/:path*',
         permanent: true,
       },
-      // 3. index.php → /
-      {
-        source: '/index.php',
-        destination: '/',
-        permanent: true,
-      },
-      // 4. Remove trailing slash (but don’t break static assets like .js, .css, .png)
+      // 3. Remove trailing slash (for HTML pages only, not static assets)
       {
         source: '/:path*/',
         has: [
@@ -32,6 +25,13 @@ const nextConfig = {
           },
         ],
         destination: '/:path*',
+        permanent: true,
+      },
+      // 4. Non-www → www (this goes last so index + trailing slash cleanup happens first)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'jpgstopdf.com' }],
+        destination: 'https://www.jpgstopdf.com/:path*',
         permanent: true,
       },
     ];
