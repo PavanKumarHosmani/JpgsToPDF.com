@@ -2,25 +2,19 @@
 const nextConfig = {
   async redirects() {
     return [
-      // 1. Remove index.html or index.php from ANY path (works for both jpgstopdf.com and www.jpgstopdf.com)
+      // Remove index.html from any path
       {
-        source: '/:path*/index(.html|.php)',
-        has: [
-          { type: 'host', value: 'jpgstopdf.com' },
-        ],
-        destination: 'https://www.jpgstopdf.com/:path*',
-        permanent: true,
-      },
-      {
-        source: '/:path*/index(.html|.php)',
-        has: [
-          { type: 'host', value: 'www.jpgstopdf.com' },
-        ],
+        source: '/:path*/index.html',
         destination: '/:path*',
         permanent: true,
       },
-
-      // 2. Remove trailing slash (only HTML, not assets)
+      // Remove index.php from any path
+      {
+        source: '/:path*/index.php',
+        destination: '/:path*',
+        permanent: true,
+      },
+      // Remove trailing slash (for HTML pages only, not assets)
       {
         source: '/:path*/',
         has: [
@@ -33,8 +27,7 @@ const nextConfig = {
         destination: '/:path*',
         permanent: true,
       },
-
-      // 3. Force non-www → www (for everything else)
+      // Non-www → www (must come last)
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'jpgstopdf.com' }],
