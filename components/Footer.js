@@ -13,7 +13,7 @@ export default function Footer() {
         {/* Footer Navigation */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm md:text-base">
           <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
-          <Link href="/terms" className="hover:underline">Terms & Conditions</Link>
+          <Link href="/TermsandConditions" className="hover:underline">Terms & Conditions</Link>
           <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
           <Link href="/contact" className="hover:underline">Contact</Link>
           <Link href="/aboutus" className="hover:underline">About Us</Link>

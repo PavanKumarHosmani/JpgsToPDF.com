@@ -4,12 +4,12 @@ export const metadata = {
   title: "Merge PDF - Free online PDF Merger",
   description:
     "Merge multiple PDF files into a single PDF online. Free, fast, and secure tool for combining PDFs easily in your browser.",
-  alternates: { canonical: "https://www.jpgstopdf.com/merge" },
+  alternates: { canonical: "https://www.jpgstopdf.com/mergepdf" },
   openGraph: {
     title: "Merge PDF - Free online PDF Merger",
     description:
       "Combine multiple PDF files into one document with our free online PDF merger. Fast, secure, and browser-based.",
-    url: "https://www.jpgstopdf.com/merge",
+    url: "https://www.jpgstopdf.com/mergepdf",
     siteName: "JPGStoPDF",
     type: "website",
   },
@@ -32,7 +32,7 @@ export default function MergePage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "JPGStoPDF - PDF Merger",
-            url: "https://www.jpgstopdf.com/merge",
+            url: "https://www.jpgstopdf.com/mergepdf",
             description:
               "Merge multiple PDF files into a single PDF online. Free, fast, and secure tool.",
             applicationCategory: "Utility",
@@ -45,11 +45,11 @@ export default function MergePage() {
       <p className="mb-6 text-gray-700">
         Combine multiple PDFs into a single document instantly. Works online, no
         installation required. You can also{" "}
-        <a href="/compress" className="text-blue-600 hover:underline">
+        <a href="/compressimage" className="text-blue-600 hover:underline">
           compress images
         </a>{" "}
         or{" "}
-        <a href="/to-jpg" className="text-blue-600 hover:underline">
+        <a href="/pdftojpg" className="text-blue-600 hover:underline">
           convert PDFs to JPG
         </a>{" "}
         with our free tools.

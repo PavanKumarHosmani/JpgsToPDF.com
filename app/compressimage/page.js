@@ -34,7 +34,7 @@ export default function CompressPage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "JPGStoPDF - Online Image Compressor",
-            url: "https://www.jpgstopdf.com/compress",
+            url: "https://www.jpgstopdf.com/compressimage",
             description:
               "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
             applicationCategory: "Utility",
@@ -48,11 +48,11 @@ export default function CompressPage() {
         Reduce the size of your images without compromising on quality. Upload
         JPG, PNG, or other image formats and download optimized compressed
         images instantly. You can also{" "}
-        <a href="/merge" className="text-blue-600 hover:underline">
+        <a href="/mergepdf" className="text-blue-600 hover:underline">
           merge PDFs
         </a>{" "}
         or{" "}
-        <a href="/to-jpg" className="text-blue-600 hover:underline">
+        <a href="/pdftojpg" className="text-blue-600 hover:underline">
           convert PDF to JPG
         </a>{" "}
         with our other free tools.

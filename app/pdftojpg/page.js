@@ -4,12 +4,12 @@ export const metadata = {
   title: "PDF to JPG Converter - Convert Your PDF to Image Online",
   description:
     "Convert PDF pages into JPG images instantly online. Free, secure, and fast PDF to JPG converter.",
-  alternates: { canonical: "https://www.jpgstopdf.com/to-jpg" },
+  alternates: { canonical: "https://www.jpgstopdf.com/pdftojpg" },
   openGraph: {
     title: "PDF to JPG Converter - Convert Your PDF to Image Online",
     description:
       "Easily convert PDF pages into JPG images with our free online tool. Fast, secure, and browser-based.",
-    url: "https://www.jpgstopdf.com/to-jpg",
+    url: "https://www.jpgstopdf.com/pdftojpg",
     siteName: "JPGStoPDF",
     type: "website",
   },
@@ -32,7 +32,7 @@ export default function ToJpgPage() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "JPGStoPDF - PDF to JPG Converter",
-            url: "https://www.jpgstopdf.com/to-jpg",
+            url: "https://www.jpgstopdf.com/pdftojpg",
             description:
               "Convert PDF pages into JPG images instantly online. Free, fast, and secure tool.",
             applicationCategory: "Utility",
@@ -45,11 +45,11 @@ export default function ToJpgPage() {
       <p className="mb-6 text-gray-700">
         Convert your PDF pages into high-quality JPG images instantly. Works online
         without installation. You can also{" "}
-        <a href="/compress" className="text-blue-600 hover:underline">
+        <a href="/compressimage" className="text-blue-600 hover:underline">
           compress images
         </a>{" "}
         or{" "}
-        <a href="/merge" className="text-blue-600 hover:underline">
+        <a href="/mergepdf" className="text-blue-600 hover:underline">
           merge PDFs
         </a>{" "}
         with our other tools.
