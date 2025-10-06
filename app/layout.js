@@ -15,16 +15,16 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   alternates: {
-    canonical: "https://www.jpgstopdf.com/",
+    canonical: "https://www.jpgstopdf.com",
     languages: {
-      "en-US": "https://www.jpgstopdf.com/",
+      "en-US": "https://www.jpgstopdf.com",
     },
   },
   openGraph: {
     title: "JPG to PDF Converter",
     description:
       "Free JPG to PDF converter online. Convert JPG, PNG & WebP images to PDF instantly and securely.",
-    url: "https://www.jpgstopdf.com/",
+    url: "https://www.jpgstopdf.com",
     type: "website",
     images: [
       {
@@ -87,7 +87,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebPage",
-              url: "https://www.jpgstopdf.com/",
+              url: "https://www.jpgstopdf.com",
               name:
                 "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
               description:
