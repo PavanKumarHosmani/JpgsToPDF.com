@@ -6,7 +6,7 @@ export default function TermsPage() {
   const title = "Terms & Conditions | JPGStoPDF.COM";
   const description =
     "Read the terms and conditions of JPGStoPDF.COM. Learn about usage, limitations, liability, and legal agreements for our free online image to PDF converter.";
-  const canonicalUrl = "https://www.jpgstopdf.com/terms-and-conditions";
+  const canonicalUrl = "https://www.jpgstopdf.com/TermsandConditions";
 
   return (
     <>
