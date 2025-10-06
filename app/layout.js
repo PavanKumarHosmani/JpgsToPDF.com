@@ -2,8 +2,7 @@
 import "./styles/globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import GoogleAnalytics from "../components/GoogleAnalytics";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 export const metadata = {
   title: "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
@@ -48,23 +47,29 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ AdSense verification meta tag (kept as requested) */}
+        {/* ✅ AdSense site verification */}
         <meta name="google-adsense-account" content="ca-pub-2964380688781577" />
 
-        {/* ✅ AdSense script (kept as requested) */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
-          crossOrigin="anonymous"
-        ></script>
-         {/* <link rel="icon" href="/favicon.ico" /> */}
+        {/* ✅ Preconnect for performance */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
         <link rel="icon" href="/favicon.ico" />
-        {/* ✅ Google Analytics (unchanged) */}
-        <script
-          async
+      </head>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+
+        {/* ✅ Google Analytics (optimized) */}
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        ></script>
-        <script
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -74,14 +79,17 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-      </head>
-      <body>
-        <Header />
-        {children}
-        <Footer />
 
-        {/* ✅ Structured Data for SEO (unchanged) */}
-        <script
+        {/* ✅ AdSense (lazy load for performance) */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
+
+        {/* ✅ Structured Data */}
+        <Script
+          id="ld-json"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
