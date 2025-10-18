@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import imageCompression from "browser-image-compression"; // ⭐ lightweight client compressor
 import ProgressBar from "./ui/ProgressBar";
 
 export default function ImageCompressor() {
@@ -17,7 +18,7 @@ export default function ImageCompressor() {
     setProgress(10);
 
     try {
-      // 1️⃣ Request upload URLs
+      // 1️⃣ Get presigned URLs
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/upload-urls`,
         {
@@ -29,49 +30,49 @@ export default function ImageCompressor() {
       const { operationId, uploadUrls } = await res.json();
       setProgress(30);
 
-      // 2️⃣ Upload + compress each file
+      // 2️⃣ Compress locally and upload smaller files
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const { fileKey, url } = uploadUrls[i];
+        const { url, fileKey } = uploadUrls[i];
 
-        // Upload to S3
-        await fetch(url, {
-          method: "PUT",
-          headers: { "Content-Type": file.type },
-          body: file,
-        });
+        // 🧠 Compress in browser
+        const options = {
+          maxSizeMB: targetSize / 1024,  // convert KB → MB
+          maxWidthOrHeight: 2500,        // resize large photos
+          useWebWorker: true,
+          initialQuality: 0.8,
+        };
 
-        // Trigger compression
-        const compressRes = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              operationId,
-              fileKey,
-              targetSizeKb: targetSize,
-            }),
-          }
+        const compressedFile = await imageCompression(file, options);
+
+        console.log(
+          `📉 ${file.name}: ${(file.size / 1024).toFixed(0)} KB → ${(compressedFile.size / 1024).toFixed(0)} KB`
         );
 
-        const { downloadUrl } = await compressRes.json();
+        // 3️⃣ Upload the compressed image to S3
+        await fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": compressedFile.type },
+          body: compressedFile,
+        });
 
-        // Auto-download compressed file
-        const a = document.createElement("a");
-        a.href = downloadUrl;
-        a.download = file.name.replace(/\.(?=[^.]+$)/, "-compressed.");
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        setProgress(30 + ((i + 1) / files.length) * 60);
+
+        // 4️⃣ (Optional) trigger backend record or notification
+        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/complete`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ operationId, fileKey }),
+        });
       }
 
       setProgress(100);
+      alert("✅ All images compressed & uploaded successfully!");
     } catch (err) {
       console.error("Compression error", err);
       alert("Something went wrong!");
     } finally {
-      setTimeout(() => setProgress(0), 2000); // reset after a short delay
+      setTimeout(() => setProgress(0), 2000);
       setLoading(false);
     }
   };
@@ -79,13 +80,10 @@ export default function ImageCompressor() {
   return (
     <div className="p-6 border rounded-2xl shadow-lg bg-white max-w-lg mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">
-        Compress Your Images
+        Compress & Upload Images
       </h2>
 
-      {/* File Input */}
-      <label className="block mb-2 font-medium text-gray-700">
-        Select Images
-      </label>
+      <label className="block mb-2 font-medium text-gray-700">Select Images</label>
       <input
         type="file"
         multiple
@@ -100,7 +98,6 @@ export default function ImageCompressor() {
                    hover:file:bg-blue-100"
       />
 
-      {/* Target Size Input */}
       <label className="block mb-2 font-medium text-gray-700">
         Target Size (KB)
       </label>
@@ -113,7 +110,6 @@ export default function ImageCompressor() {
         placeholder="e.g. 200"
       />
 
-      {/* Button */}
       <button
         onClick={handleUploadAndCompress}
         disabled={loading}
@@ -123,10 +119,9 @@ export default function ImageCompressor() {
             : "bg-blue-600 text-white hover:bg-blue-700 active:scale-95"
           }`}
       >
-        {loading ? "Compressing..." : "Upload & Compress"}
+        {loading ? "Compressing..." : "Compress & Upload"}
       </button>
 
-      {/* Progress Bar */}
       {progress > 0 && <ProgressBar value={progress} />}
     </div>
   );

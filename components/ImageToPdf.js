@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import imageCompression from "browser-image-compression";
 
 export default function ImageToPdf() {
   const [files, setFiles] = useState([]);
@@ -25,14 +26,38 @@ export default function ImageToPdf() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fileCount: files.length }),
       });
+
       const { operationId, uploadUrls } = await urlRes.json();
 
-      // 2️⃣ Upload images to S3
+      // 2️⃣ Compress and upload each image to S3
       for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        // 🧠 Compression options — adjust as needed
+        const options = {
+          maxSizeMB: 2, // target max size
+          maxWidthOrHeight: 2500, // resize large photos
+          useWebWorker: true, // async compression
+          initialQuality: 0.85, // retain 85% quality
+        };
+
+        console.log(`Compressing ${file.name}...`);
+        const compressedFile = await imageCompression(file, options);
+        console.log(
+          `${file.name}: ${(
+            file.size /
+            (1024 * 1024)
+          ).toFixed(2)} MB → ${(
+            compressedFile.size /
+            (1024 * 1024)
+          ).toFixed(2)} MB`
+        );
+
+        // Upload compressed image
         await fetch(uploadUrls[i].url, {
           method: "PUT",
-          headers: { "Content-Type": files[i].type || "application/octet-stream" },
-          body: files[i],
+          headers: { "Content-Type": file.type || "application/octet-stream" },
+          body: compressedFile,
         });
       }
 
@@ -43,6 +68,7 @@ export default function ImageToPdf() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ operationId, fileKeys }),
       });
+
       const { downloadUrl } = await convRes.json();
 
       // 4️⃣ Auto-download the result

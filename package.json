@@ -10,7 +10,10 @@
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.12.2",
+    "browser-image-compression": "^2.0.2",
     "next": "14.2.3",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^3.4.120",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
