@@ -59,7 +59,7 @@ export default function ImageCompressor() {
         setProgress(30 + ((i + 1) / files.length) * 60);
 
         // 4️⃣ (Optional) trigger backend record or notification
-        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/complete`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ operationId, fileKey }),
