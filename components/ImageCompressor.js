@@ -91,7 +91,6 @@ export default function ImageCompressor() {
       }
 
       setProgress(100);
-      alert("✅ All images compressed and downloaded!");
     } catch (err) {
       console.error("Compression error", err);
       alert("❌ Something went wrong. Please try again.");
