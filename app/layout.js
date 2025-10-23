@@ -2,6 +2,7 @@
 import "./styles/globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import StickyAdBanners from "../components/StickyAdBanners";  // ✅ Add this
 import Script from "next/script";
 
 export const metadata = {
@@ -15,9 +16,7 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://www.jpgstopdf.com",
-    languages: {
-      "en-US": "https://www.jpgstopdf.com",
-    },
+    languages: { "en-US": "https://www.jpgstopdf.com" },
   },
   openGraph: {
     title: "JPG to PDF Converter",
@@ -47,10 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ AdSense site verification */}
         <meta name="google-adsense-account" content="ca-pub-2964380688781577" />
-
-        {/* ✅ Preconnect for performance */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -59,10 +55,14 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Header />
+
+        {/* ✅ Sticky top & bottom AdSense banners */}
+        <StickyAdBanners />
+
         {children}
         <Footer />
 
-        {/* ✅ Google Analytics (optimized) */}
+        {/* ✅ Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
           strategy="afterInteractive"
@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* ✅ AdSense (lazy load for performance) */}
+        {/* ✅ AdSense global script (lazy) */}
         <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
           strategy="lazyOnload"
