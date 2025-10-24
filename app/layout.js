@@ -49,7 +49,6 @@ export default function RootLayout({ children }) {
         <meta name="google-adsense-account" content="ca-pub-2964380688781577" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
         <link rel="icon" href="/favicon.ico" />
       </head>
@@ -61,24 +60,6 @@ export default function RootLayout({ children }) {
 
         {children}
         <Footer />
-
-        {/* ✅ Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX', { page_path: window.location.pathname });
-            `,
-          }}
-        />
 
         {/* ✅ AdSense global script (lazy) */}
         <Script

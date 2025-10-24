@@ -5,13 +5,13 @@ export const metadata = {
   description:
     "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
   alternates: {
-    canonical: "/jpgtopdf", // relative, resolves against metadataBase
+    canonical: "https://www.jpgstopdf.com/jpgtopdf", // relative, resolves against metadataBase
   },
   openGraph: {
     title: "JPG to PDF Converter | Images JPG to PDF online",
     description:
       "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
-    url: "/jpgtopdf", // relative to metadataBase
+    url: "https://www.jpgstopdf.com/jpgtopdf", // relative to metadataBase
     siteName: "JPGStoPDF",
     type: "website",
   },
