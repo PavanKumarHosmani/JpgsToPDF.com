@@ -6,6 +6,12 @@ export default function PdfToJpg() {
   const [files, setFiles] = useState([]);
   const [downloading, setDownloading] = useState(false);
   const [results, setResults] = useState([]);
+  const [toast, setToast] = useState("");
+
+  const showToast = (msg, duration = 3000) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), duration);
+  };
 
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
@@ -65,13 +71,42 @@ export default function PdfToJpg() {
     }
   };
 
+  const handleDownload = async (file) => {
+    try {
+      showToast("📥 Download started...");
+      const res = await fetch(file.downloadUrl);
+      const blob = await res.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = file.fileKey.split("/").pop();
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(blobUrl);
+
+      showToast("✅ Download complete!");
+    } catch (err) {
+      console.error("Download failed:", err);
+      showToast("❌ Download failed!");
+    }
+  };
+
   const handleReset = () => {
     setFiles([]);
     setResults([]);
   };
 
   return (
-    <div className="p-8 border rounded-lg shadow-md bg-white max-w-lg mx-auto transition-all duration-300">
+    <div className="relative p-8 border rounded-lg shadow-md bg-white max-w-lg mx-auto transition-all duration-300">
+      {/* ✅ Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50 animate-fadeIn">
+          {toast}
+        </div>
+      )}
+
       {!results.length ? (
         <>
           <h2
@@ -81,7 +116,6 @@ export default function PdfToJpg() {
             Convert PDFs to JPG
           </h2>
 
-          {/* ✅ Accessible label and description */}
           <label
             htmlFor="pdfUpload"
             className="block mb-2 font-medium text-gray-700"
@@ -104,7 +138,8 @@ export default function PdfToJpg() {
                        cursor-pointer"
           />
           <p id="pdfHelp" className="text-sm text-gray-500 mt-1">
-            You can select multiple PDF files to convert each page into a JPG image.
+            You can select multiple PDF files to convert each page into JPG
+            images.
           </p>
 
           {files.length > 0 && (
@@ -136,7 +171,6 @@ export default function PdfToJpg() {
         </>
       ) : (
         <>
-          {/* ✅ Conversion Completed View */}
           <div className="text-center" aria-live="polite">
             <h2
               className="text-2xl font-bold mb-2 text-green-700"
@@ -149,24 +183,21 @@ export default function PdfToJpg() {
             </p>
 
             <div className="space-y-3">
-              {results.map(({ fileKey, downloadUrl }, i) => (
+              {results.map((file, i) => (
                 <div
                   key={i}
                   className="flex justify-between items-center p-3 border rounded-lg shadow-sm bg-gray-50 hover:bg-gray-100"
                 >
                   <span className="truncate text-gray-700">
-                    {fileKey.split("/").pop()}
+                    {file.fileKey.split("/").pop()}
                   </span>
-                  <a
-                    href={downloadUrl}
-                    download={fileKey.split("/").pop()}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => handleDownload(file)}
                     className="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition"
-                    aria-label={`Download ${fileKey.split("/").pop()}`}
+                    aria-label={`Download ${file.fileKey.split("/").pop()}`}
                   >
                     Download
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>

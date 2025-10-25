@@ -6,6 +6,12 @@ export default function ImageToPdf() {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState(null);
+  const [toast, setToast] = useState("");
+
+  const showToast = (msg, duration = 3000) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), duration);
+  };
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files || []));
@@ -54,7 +60,9 @@ export default function ImageToPdf() {
       await Promise.all(
         uploadUrls.map((u, i) =>
           axios.put(u.url, compressedFiles[i], {
-            headers: { "Content-Type": files[i].type || "application/octet-stream" },
+            headers: {
+              "Content-Type": files[i].type || "application/octet-stream",
+            },
           })
         )
       );
@@ -77,20 +85,52 @@ export default function ImageToPdf() {
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      showToast("📥 Download started...");
+      const res = await fetch(downloadUrl);
+      const blob = await res.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = "converted.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(blobUrl);
+
+      showToast("✅ Download complete!");
+    } catch (err) {
+      console.error("Download failed:", err);
+      showToast("❌ Download failed!");
+    }
+  };
+
   const handleReset = () => {
     setFiles([]);
     setDownloadUrl(null);
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 border rounded-xl shadow bg-white transition-all duration-300">
+    <div className="relative max-w-2xl mx-auto p-6 border rounded-xl shadow bg-white transition-all duration-300">
+      {/* ✅ Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50 animate-fadeIn">
+          {toast}
+        </div>
+      )}
+
       {!downloadUrl ? (
         <>
           <h2 className="text-2xl font-semibold mb-4 text-center">
             Convert Images to PDF
           </h2>
 
-          <label htmlFor="file-upload" className="block mb-2 font-medium text-gray-700">
+          <label
+            htmlFor="file-upload"
+            className="block mb-2 font-medium text-gray-700"
+          >
             Select image files to convert
           </label>
           <input
@@ -112,13 +152,18 @@ export default function ImageToPdf() {
           </p>
 
           {files.length > 0 && (
-            <div className="mt-4 bg-white shadow rounded-lg p-4" aria-live="polite">
+            <div
+              className="mt-4 bg-white shadow rounded-lg p-4"
+              aria-live="polite"
+            >
               <h3 className="font-semibold mb-2 text-gray-800">
                 Selected Files ({files.length})
               </h3>
               <ul className="space-y-1 max-h-40 overflow-y-auto text-sm text-gray-600">
                 {files.map((f, i) => (
-                  <li key={i} className="truncate">{f.name}</li>
+                  <li key={i} className="truncate">
+                    {f.name}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -141,15 +186,13 @@ export default function ImageToPdf() {
             Your PDF is ready. Click below to download it.
           </p>
 
-          <a
-            href={downloadUrl}
-            download="converted.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* ✅ Same logic, but stays on same page */}
+          <button
+            onClick={handleDownload}
             className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
           >
             Download PDF
-          </a>
+          </button>
 
           <button
             onClick={handleReset}

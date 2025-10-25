@@ -9,6 +9,12 @@ export default function ImageCompressor() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [downloadLinks, setDownloadLinks] = useState([]);
+  const [toast, setToast] = useState("");
+
+  const showToast = (msg, duration = 3000) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), duration);
+  };
 
   const handleFileChange = (e) => {
     setFiles(e.target.files);
@@ -21,10 +27,8 @@ export default function ImageCompressor() {
     setProgress(10);
 
     try {
-      // ✅ Dynamically import compression library only when needed
       const { default: imageCompression } = await import("browser-image-compression");
 
-      // 1️⃣ Get presigned upload URLs
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/upload-urls`,
         {
@@ -41,7 +45,6 @@ export default function ImageCompressor() {
 
       const newDownloadLinks = [];
 
-      // 2️⃣ Compress locally & upload
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const { url, fileKey } = uploadUrls[i];
@@ -53,12 +56,7 @@ export default function ImageCompressor() {
           initialQuality: 0.8,
         };
 
-        console.log(`Compressing ${file.name}...`);
         const compressedFile = await imageCompression(file, options);
-
-        console.log(
-          `📉 ${file.name}: ${(file.size / 1024).toFixed(0)} KB → ${(compressedFile.size / 1024).toFixed(0)} KB`
-        );
 
         await fetch(url, {
           method: "PUT",
@@ -102,6 +100,28 @@ export default function ImageCompressor() {
     }
   };
 
+  const handleDownload = async (file) => {
+    try {
+      showToast(`📥 Downloading ${file.name}...`);
+      const res = await fetch(file.url);
+      const blob = await res.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = file.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(blobUrl);
+
+      showToast("✅ Download complete!");
+    } catch (err) {
+      console.error("Download failed:", err);
+      showToast("❌ Download failed!");
+    }
+  };
+
   const handleReset = () => {
     setFiles(null);
     setDownloadLinks([]);
@@ -110,17 +130,21 @@ export default function ImageCompressor() {
   };
 
   return (
-    <div className="p-6 border rounded-2xl shadow-lg bg-white max-w-lg mx-auto transition-all duration-300">
+    <div className="relative p-6 border rounded-2xl shadow-lg bg-white max-w-lg mx-auto transition-all duration-300">
+      {/* ✅ Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50 animate-fadeIn">
+          {toast}
+        </div>
+      )}
+
       {!downloadLinks.length ? (
         <>
           <h2 className="text-2xl font-bold mb-4 text-gray-800">
             Compress & Upload Images
           </h2>
 
-          <label
-            htmlFor="fileInput"
-            className="block mb-2 font-medium text-gray-700"
-          >
+          <label htmlFor="fileInput" className="block mb-2 font-medium text-gray-700">
             Select Images
           </label>
           <input
@@ -177,7 +201,6 @@ export default function ImageCompressor() {
         </>
       ) : (
         <>
-          {/* ✅ Compression Completed View */}
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-2 text-green-700">
               ✅ Compression Completed!
@@ -193,16 +216,13 @@ export default function ImageCompressor() {
                   className="flex justify-between items-center p-3 border rounded-lg shadow-sm bg-gray-50 hover:bg-gray-100"
                 >
                   <span className="truncate text-gray-700">{file.name}</span>
-                  <a
-                    href={file.url}
-                    download={file.name}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => handleDownload(file)}
                     className="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition"
                     aria-label={`Download ${file.name}`}
                   >
                     Download
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>

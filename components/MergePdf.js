@@ -8,8 +8,13 @@ export default function MergePdf() {
   const [downloadUrl, setDownloadUrl] = useState(null);
   const [pdfLib, setPdfLib] = useState(null);
   const [pdfjs, setPdfjs] = useState(null);
+  const [toast, setToast] = useState("");
 
-  // ✅ Load PDF libraries only when needed (when user selects files)
+  const showToast = (msg, duration = 3000) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), duration);
+  };
+
   const handleFileChange = async (e) => {
     const selectedFiles = Array.from(e.target.files);
     setFiles(selectedFiles);
@@ -21,7 +26,7 @@ export default function MergePdf() {
         import("pdf-lib"),
         import("pdfjs-dist"),
       ]);
-      await import("pdfjs-dist/build/pdf.worker.entry"); // worker for pdfjs
+      await import("pdfjs-dist/build/pdf.worker.entry");
       setPdfLib({ PDFDocument });
       setPdfjs(pdfjsLib);
       console.log("✅ PDF libraries loaded on demand");
@@ -130,24 +135,49 @@ export default function MergePdf() {
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      showToast("📥 Download started...");
+      const res = await fetch(downloadUrl);
+      const blob = await res.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = "merged.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(blobUrl);
+
+      showToast("✅ Download complete!");
+    } catch (err) {
+      console.error("Download failed:", err);
+      showToast("❌ Download failed!");
+    }
+  };
+
   const handleReset = () => {
     setFiles([]);
     setDownloadUrl(null);
   };
 
   return (
-    <div className="p-8 border rounded-lg shadow-md bg-white max-w-lg mx-auto transition-all duration-300">
+    <div className="relative p-8 border rounded-lg shadow-md bg-white max-w-lg mx-auto transition-all duration-300">
+      {/* ✅ Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50 animate-fadeIn">
+          {toast}
+        </div>
+      )}
+
       {!downloadUrl ? (
         <>
           <h2 className="text-xl font-semibold mb-4 text-center">
             Smart Merge & Auto-Compress PDFs
           </h2>
 
-          {/* ✅ Accessible file input with label */}
-          <label
-            htmlFor="pdfInput"
-            className="block mb-2 font-medium text-gray-700"
-          >
+          <label htmlFor="pdfInput" className="block mb-2 font-medium text-gray-700">
             Select PDF files to merge
           </label>
           <input
@@ -169,10 +199,7 @@ export default function MergePdf() {
           </p>
 
           {files.length > 0 && (
-            <div
-              className="mt-4 bg-white shadow rounded-lg p-4"
-              aria-live="polite"
-            >
+            <div className="mt-4 bg-white shadow rounded-lg p-4" aria-live="polite">
               <h3 className="font-semibold mb-2 text-gray-800">
                 Selected Files ({files.length})
               </h3>
@@ -194,36 +221,29 @@ export default function MergePdf() {
           </button>
         </>
       ) : (
-        <>
-          {/* ✅ Merge Completed View */}
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-2 text-green-700">
-              ✅ Merge Completed!
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Your merged PDF is ready. Click below to download it.
-            </p>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-2 text-green-700">
+            ✅ Merge Completed!
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Your merged PDF is ready. Click below to download it.
+          </p>
 
-            <a
-              href={downloadUrl}
-              download="merged.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
-              aria-label="Download merged PDF file"
-            >
-              Download PDF
-            </a>
+          {/* ✅ Mobile-friendly, same-tab download */}
+          <button
+            onClick={handleDownload}
+            className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
+          >
+            Download PDF
+          </button>
 
-            <button
-              onClick={handleReset}
-              className="mt-6 block mx-auto bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-              aria-label="Merge more PDF files"
-            >
-              Merge Another Batch
-            </button>
-          </div>
-        </>
+          <button
+            onClick={handleReset}
+            className="mt-6 block mx-auto bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+          >
+            Merge Another Batch
+          </button>
+        </div>
       )}
     </div>
   );
