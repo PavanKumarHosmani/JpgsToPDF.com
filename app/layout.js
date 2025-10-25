@@ -1,5 +1,4 @@
-import fs from "fs";
-import path from "path";
+import "./styles/globals.css"; // ✅ Tailwind + global CSS
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import StickyAdBanners from "../components/StickyAdBanners";
@@ -43,57 +42,66 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // ✅ Inline the small layout.css file directly
-  let inlineCSS = "";
-  try {
-    const cssPath = path.join(process.cwd(), ".next/static/css/app/layout.css");
-    inlineCSS = fs.readFileSync(cssPath, "utf8");
-  } catch {
-    inlineCSS = "body{background:#fff}"; // fallback if missing
-  }
-
-  // ✅ Also inline your global styles (optional)
-  try {
-    const globalPath = path.join(process.cwd(), "app/styles/globals.css");
-    const globalCSS = fs.readFileSync(globalPath, "utf8");
-    inlineCSS += "\n" + globalCSS;
-  } catch {}
-
   return (
     <html lang="en">
       <head>
-        {/* ✅ Inline critical CSS to eliminate render-blocking */}
-        <style dangerouslySetInnerHTML={{ __html: inlineCSS }} />
-
-        {/* ✅ Preconnect only necessary AdSense origins */}
+        {/* ✅ Preconnect for faster AdSense DNS */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
 
-        {/* ✅ Preload key image for LCP */}
+        {/* ✅ Preload LCP image & CSS */}
         <link rel="preload" as="image" href="/apple-touch-icon.png" />
+        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
 
         <meta
           name="google-adsense-account"
           content="ca-pub-2964380688781577"
         />
         <link rel="icon" href="/favicon.ico" />
+
+        {/* ✅ Inline minimal critical CSS for instant paint */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              body { background: #fff; color: #111827; }
+              header, footer { display: block; }
+            `,
+          }}
+        />
+
+        {/* ✅ Defer layout.css loading (non-blocking print trick) */}
+        <Script id="defer-layout-css" strategy="afterInteractive">
+          {`
+            requestIdleCallback(() => {
+              const cssLink = document.createElement('link');
+              cssLink.rel = 'stylesheet';
+              cssLink.href = '/_next/static/css/app/layout.css';
+              cssLink.media = 'print';
+              cssLink.onload = () => (cssLink.media = 'all');
+              document.head.appendChild(cssLink);
+            });
+          `}
+        </Script>
       </head>
 
-      <body>
+      <body className="bg-white text-gray-900">
+        {/* ✅ Layout structure */}
         <Header />
         <StickyAdBanners />
         {children}
         <Footer />
 
-        {/* ✅ Lazy-load AdSense after full page load */}
+        {/* ✅ Lazy-load AdSense after page load */}
         <Script id="adsense-loader" strategy="afterInteractive">
           {`
             window.addEventListener('load', function() {
-              const s = document.createElement('script');
-              s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577';
-              s.async = true;
-              s.crossOrigin = 'anonymous';
-              document.body.appendChild(s);
+              requestIdleCallback(() => {
+                const s = document.createElement('script');
+                s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577';
+                s.async = true;
+                s.crossOrigin = 'anonymous';
+                document.body.appendChild(s);
+              });
             });
           `}
         </Script>
