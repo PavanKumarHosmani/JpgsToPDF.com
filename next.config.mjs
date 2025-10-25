@@ -2,17 +2,20 @@ import bundleAnalyzer from "@next/bundle-analyzer";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // ✅ Core setup
   trailingSlash: false,
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
   swcMinify: true,
 
+  // ✅ Image optimization
   images: {
     formats: ["image/avif", "image/webp"],
     domains: ["www.jpgstopdf.com", "pagead2.googlesyndication.com"],
   },
 
+  // ✅ Security & caching headers
   async headers() {
     return [
       {
@@ -30,6 +33,7 @@ const nextConfig = {
     ];
   },
 
+  // ✅ Redirect rules for SEO and canonical consistency
   async redirects() {
     return [
       { source: "/:path*/index.html", destination: "/:path*", permanent: true },
@@ -61,12 +65,12 @@ const nextConfig = {
     ];
   },
 
-  // ✅ Webpack optimization (safe for dev & prod)
+  // ✅ Webpack optimizations
   webpack: (config, { dev, isServer }) => {
-    // ✅ Only load Critters during *build time*, not dev server
+    // Enable Critters only for production client build
     if (!dev && !isServer && process.env.NODE_ENV === "production") {
       try {
-        const Critters = require("critters-webpack-plugin"); // ⬅️ CommonJS require avoids import.meta
+        const Critters = require("critters-webpack-plugin"); // use CommonJS require (fixes import.meta.url issue)
         config.plugins.push(
           new Critters({
             preload: "swap",
@@ -76,21 +80,17 @@ const nextConfig = {
           })
         );
       } catch (err) {
-        console.warn("⚠️ Skipping Critters in dev:", err.message);
+        console.warn("⚠️ Skipping Critters:", err.message);
       }
     }
 
-    if (!dev && !isServer) {
-      config.resolve.alias["react-dom"] = "react-dom/profiling";
-      config.resolve.alias["scheduler/tracing"] =
-        "scheduler/tracing-profiling";
-    }
-
+    // ✅ Remove outdated React profiling aliases (cause of build failure)
+    // (No need to manually alias react-dom in Next 14)
     return config;
   },
 };
 
-// ✅ Bundle Analyzer wrapper
+// ✅ Wrap with bundle analyzer (optional)
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
