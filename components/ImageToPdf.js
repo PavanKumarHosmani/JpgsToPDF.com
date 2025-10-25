@@ -5,11 +5,11 @@ import { useState } from "react";
 export default function ImageToPdf() {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState(null); // ✅ Added state for download URL
+  const [downloadUrl, setDownloadUrl] = useState(null);
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
-    setDownloadUrl(null); // reset old link when selecting new files
+    setDownloadUrl(null);
   };
 
   const handleConvert = async () => {
@@ -21,7 +21,7 @@ export default function ImageToPdf() {
     setLoading(true);
 
     try {
-      // ✅ Dynamically import compression library only when needed
+      // ✅ Load image compression library only when user uploads
       const { default: imageCompression } = await import("browser-image-compression");
 
       // 1️⃣ Ask backend for presigned URLs
@@ -33,31 +33,19 @@ export default function ImageToPdf() {
 
       const { operationId, uploadUrls } = await urlRes.json();
 
-      // 2️⃣ Compress and upload each image to S3
+      // 2️⃣ Compress & upload each image
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-
-        // 🧠 Compression options — adjust as needed
         const options = {
-          maxSizeMB: 2, // target max size
-          maxWidthOrHeight: 2500, // resize large photos
-          useWebWorker: true, // async compression
-          initialQuality: 0.85, // retain 85% quality
+          maxSizeMB: 2,
+          maxWidthOrHeight: 2500,
+          useWebWorker: true,
+          initialQuality: 0.85,
         };
 
         console.log(`Compressing ${file.name}...`);
         const compressedFile = await imageCompression(file, options);
-        console.log(
-          `${file.name}: ${(
-            file.size /
-            (1024 * 1024)
-          ).toFixed(2)} MB → ${(
-            compressedFile.size /
-            (1024 * 1024)
-          ).toFixed(2)} MB`
-        );
 
-        // Upload compressed image
         await fetch(uploadUrls[i].url, {
           method: "PUT",
           headers: { "Content-Type": file.type || "application/octet-stream" },
@@ -75,7 +63,7 @@ export default function ImageToPdf() {
 
       const { downloadUrl } = await convRes.json();
 
-      // ✅ 4️⃣ Instead of auto-downloading, show download button
+      // 4️⃣ Show download link
       setDownloadUrl(downloadUrl);
     } catch (err) {
       console.error(err);
@@ -98,12 +86,20 @@ export default function ImageToPdf() {
             Convert Images to PDF
           </h2>
 
+          {/* ✅ Add accessible label for file input */}
+          <label
+            htmlFor="file-upload"
+            className="block mb-2 font-medium text-gray-700"
+          >
+            Select image files to convert
+          </label>
           <input
             id="file-upload"
             type="file"
             accept="image/*"
             multiple
             onChange={handleFileChange}
+            aria-describedby="file-help"
             className="block w-full text-sm text-gray-700 
               file:mr-4 file:py-2 file:px-4 
               file:rounded-full file:border-0 
@@ -112,9 +108,15 @@ export default function ImageToPdf() {
               hover:file:bg-green-100
               cursor-pointer"
           />
+          <p id="file-help" className="text-sm text-gray-500 mt-1">
+            Supports JPG, PNG, and WebP formats.
+          </p>
 
           {files.length > 0 && (
-            <div className="mt-4 bg-white shadow rounded-lg p-4">
+            <div
+              className="mt-4 bg-white shadow rounded-lg p-4"
+              aria-live="polite"
+            >
               <h3 className="font-semibold mb-2 text-gray-800">
                 Selected Files ({files.length})
               </h3>
@@ -129,6 +131,7 @@ export default function ImageToPdf() {
           <button
             onClick={handleConvert}
             disabled={loading}
+            aria-label="Convert selected images to PDF"
             className="mt-6 w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50"
           >
             {loading ? "Converting..." : "Convert to PDF"}
@@ -151,9 +154,18 @@ export default function ImageToPdf() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
+              aria-label="Download converted PDF file"
             >
               Download PDF
             </a>
+
+            <button
+              onClick={handleReset}
+              className="mt-6 block mx-auto bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+              aria-label="Convert more images"
+            >
+              Convert Another Batch
+            </button>
           </div>
         </>
       )}

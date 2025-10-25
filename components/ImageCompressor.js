@@ -8,11 +8,11 @@ export default function ImageCompressor() {
   const [targetSize, setTargetSize] = useState(200);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [downloadLinks, setDownloadLinks] = useState([]); // ✅ Store download URLs
+  const [downloadLinks, setDownloadLinks] = useState([]);
 
   const handleFileChange = (e) => {
     setFiles(e.target.files);
-    setDownloadLinks([]); // reset old links on new selection
+    setDownloadLinks([]);
   };
 
   const handleUploadAndCompress = async () => {
@@ -47,7 +47,7 @@ export default function ImageCompressor() {
         const { url, fileKey } = uploadUrls[i];
 
         const options = {
-          maxSizeMB: targetSize / 1024, // convert KB to MB
+          maxSizeMB: targetSize / 1024,
           maxWidthOrHeight: 2500,
           useWebWorker: true,
           initialQuality: 0.8,
@@ -60,7 +60,6 @@ export default function ImageCompressor() {
           `📉 ${file.name}: ${(file.size / 1024).toFixed(0)} KB → ${(compressedFile.size / 1024).toFixed(0)} KB`
         );
 
-        // 3️⃣ Upload to S3
         await fetch(url, {
           method: "PUT",
           headers: { "Content-Type": compressedFile.type },
@@ -69,7 +68,6 @@ export default function ImageCompressor() {
 
         setProgress(40 + ((i + 1) / files.length) * 30);
 
-        // 4️⃣ Ask backend to start compression & return download URL
         const compressRes = await fetch(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
           {
@@ -87,13 +85,10 @@ export default function ImageCompressor() {
 
         const { downloadUrl } = await compressRes.json();
 
-        // ✅ 5️⃣ Store download link instead of auto-downloading
         newDownloadLinks.push({
           name: file.name.replace(/\.(?=[^.]+$)/, "-compressed."),
           url: downloadUrl,
         });
-
-        console.log(`✅ Download ready for ${file.name}`);
       }
 
       setDownloadLinks(newDownloadLinks);
@@ -122,14 +117,19 @@ export default function ImageCompressor() {
             Compress & Upload Images
           </h2>
 
-          <label className="block mb-2 font-medium text-gray-700">
+          <label
+            htmlFor="fileInput"
+            className="block mb-2 font-medium text-gray-700"
+          >
             Select Images
           </label>
           <input
+            id="fileInput"
             type="file"
             multiple
             accept="image/*"
             onChange={handleFileChange}
+            aria-describedby="fileInputDesc"
             className="mb-4 block w-full border rounded-lg cursor-pointer 
                        px-3 py-2 text-gray-700 
                        file:mr-4 file:py-2 file:px-4 
@@ -138,14 +138,22 @@ export default function ImageCompressor() {
                        file:bg-blue-50 file:text-blue-600 
                        hover:file:bg-blue-100"
           />
+          <p id="fileInputDesc" className="text-sm text-gray-500 mb-4">
+            Supports JPG, PNG, and WebP formats.
+          </p>
 
-          <label className="block mb-2 font-medium text-gray-700">
+          <label
+            htmlFor="targetSize"
+            className="block mb-2 font-medium text-gray-700"
+          >
             Target Size (KB)
           </label>
           <input
+            id="targetSize"
             type="number"
             value={targetSize}
             onChange={(e) => setTargetSize(Number(e.target.value))}
+            aria-label="Enter desired output file size in kilobytes"
             className="border px-4 py-2 rounded-lg mb-4 block w-full shadow-sm 
                        focus:ring-2 focus:ring-blue-500 focus:outline-none"
             placeholder="e.g. 200"
@@ -154,6 +162,7 @@ export default function ImageCompressor() {
           <button
             onClick={handleUploadAndCompress}
             disabled={loading}
+            aria-label="Compress and upload selected images"
             className={`w-full px-6 py-3 rounded-full font-semibold shadow-md transition-all 
               ${
                 loading
@@ -190,6 +199,7 @@ export default function ImageCompressor() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                    aria-label={`Download ${file.name}`}
                   >
                     Download
                   </a>
@@ -200,6 +210,7 @@ export default function ImageCompressor() {
             <button
               onClick={handleReset}
               className="mt-8 bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-blue-700 transition"
+              aria-label="Compress another batch of images"
             >
               Compress Another Batch
             </button>

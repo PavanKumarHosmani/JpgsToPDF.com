@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function MergePdf() {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState(null); // ✅ Show after merge
+  const [downloadUrl, setDownloadUrl] = useState(null);
   const [pdfLib, setPdfLib] = useState(null);
   const [pdfjs, setPdfjs] = useState(null);
 
@@ -28,7 +28,6 @@ export default function MergePdf() {
     }
   };
 
-  // 🧩 Detect if PDF likely image-heavy
   const isImageHeavy = (pdfDoc) => {
     try {
       const pages = pdfDoc.getPages();
@@ -37,34 +36,27 @@ export default function MergePdf() {
         const { xObjectNames } = page.node;
         if (xObjectNames && xObjectNames.size > 0) imagePages++;
       }
-      return imagePages / pages.length > 0.3; // >30% pages have images
+      return imagePages / pages.length > 0.3;
     } catch {
       return false;
     }
   };
 
-  // ⚡ Fast structural compression
   const compressStandard = async (file) => {
     const data = await file.arrayBuffer();
     const pdfDoc = await pdfLib.PDFDocument.load(data);
     const compressed = await pdfDoc.save({ useObjectStreams: true });
-    const out = new File([compressed], file.name, { type: "application/pdf" });
-    console.log(
-      `⚙️ ${file.name}: ${(file.size / 1024 / 1024).toFixed(2)} MB → ${(out.size / 1024 / 1024).toFixed(2)} MB`
-    );
-    return out;
+    return new File([compressed], file.name, { type: "application/pdf" });
   };
 
-  // 🔥 High compression via image downsampling
   const compressHigh = async (file) => {
     const data = await file.arrayBuffer();
     const pdf = await pdfjs.getDocument({ data }).promise;
     const newPdf = await pdfLib.PDFDocument.create();
-    const scale = 0.55; // ~50-60% DPI
+    const scale = 0.55;
     const quality = 0.75;
-    const total = pdf.numPages;
 
-    for (let i = 1; i <= total; i++) {
+    for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);
       const viewport = page.getViewport({ scale });
       const canvas = document.createElement("canvas");
@@ -79,14 +71,9 @@ export default function MergePdf() {
     }
 
     const bytes = await newPdf.save();
-    const out = new File([bytes], file.name, { type: "application/pdf" });
-    console.log(
-      `🖼️ ${file.name}: ${(file.size / 1024 / 1024).toFixed(2)} MB → ${(out.size / 1024 / 1024).toFixed(2)} MB`
-    );
-    return out;
+    return new File([bytes], file.name, { type: "application/pdf" });
   };
 
-  // 🧠 Auto decide compression mode
   const compressSmart = async (file) => {
     try {
       const data = await file.arrayBuffer();
@@ -99,22 +86,22 @@ export default function MergePdf() {
     }
   };
 
-  // 🔗 Merge flow
   const handleMerge = async () => {
     if (files.length < 2) return alert("Please select at least 2 PDF files.");
     if (!pdfLib || !pdfjs) return alert("PDF libraries are still loading...");
     setLoading(true);
 
     try {
-      // 1️⃣ Presigned upload URLs
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/pdf/upload-urls`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fileCount: files.length }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/pdf/upload-urls`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fileCount: files.length }),
+        }
+      );
       const { operationId, uploadUrls } = await res.json();
 
-      // 2️⃣ Compress + upload
       for (let i = 0; i < files.length; i++) {
         const compressed = await compressSmart(files[i]);
         await fetch(uploadUrls[i].url, {
@@ -124,16 +111,16 @@ export default function MergePdf() {
         });
       }
 
-      // 3️⃣ Trigger merge
       const fileKeys = uploadUrls.map((u) => u.fileKey);
-      const mergeRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/pdf/merge/start`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ operationId, fileKeys }),
-      });
+      const mergeRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/pdf/merge/start`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ operationId, fileKeys }),
+        }
+      );
       const { downloadUrl } = await mergeRes.json();
-
-      // ✅ 4️⃣ Show download button instead of auto-download
       setDownloadUrl(downloadUrl);
     } catch (err) {
       console.error("Merge failed:", err);
@@ -156,11 +143,20 @@ export default function MergePdf() {
             Smart Merge & Auto-Compress PDFs
           </h2>
 
+          {/* ✅ Accessible file input with label */}
+          <label
+            htmlFor="pdfInput"
+            className="block mb-2 font-medium text-gray-700"
+          >
+            Select PDF files to merge
+          </label>
           <input
+            id="pdfInput"
             type="file"
             accept="application/pdf"
             multiple
             onChange={handleFileChange}
+            aria-describedby="pdfHelp"
             className="block w-full text-sm text-gray-700 
                        file:mr-4 file:py-2 file:px-4 
                        file:rounded-full file:border-0 
@@ -168,9 +164,15 @@ export default function MergePdf() {
                        file:bg-green-50 file:text-green-600
                        hover:file:bg-green-100 cursor-pointer"
           />
+          <p id="pdfHelp" className="text-sm text-gray-500 mt-1">
+            You can select multiple PDFs to combine into one.
+          </p>
 
           {files.length > 0 && (
-            <div className="mt-4 bg-white shadow rounded-lg p-4">
+            <div
+              className="mt-4 bg-white shadow rounded-lg p-4"
+              aria-live="polite"
+            >
               <h3 className="font-semibold mb-2 text-gray-800">
                 Selected Files ({files.length})
               </h3>
@@ -185,6 +187,7 @@ export default function MergePdf() {
           <button
             onClick={handleMerge}
             disabled={loading}
+            aria-label="Merge selected PDF files"
             className="mt-6 w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 disabled:opacity-50"
           >
             {loading ? "Compressing & Merging..." : "Merge PDFs"}
@@ -207,9 +210,18 @@ export default function MergePdf() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
+              aria-label="Download merged PDF file"
             >
               Download PDF
             </a>
+
+            <button
+              onClick={handleReset}
+              className="mt-6 block mx-auto bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+              aria-label="Merge more PDF files"
+            >
+              Merge Another Batch
+            </button>
           </div>
         </>
       )}

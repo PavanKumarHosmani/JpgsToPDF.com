@@ -5,13 +5,13 @@ export const metadata = {
   description:
     "Merge multiple PDF files into a single PDF online. Free, fast, and secure tool for combining PDFs easily in your browser.",
   alternates: { 
-    canonical: "/mergepdf" // relative, auto-resolves with metadataBase
+    canonical: "https://www.jpgstopdf.com/mergepdf" // relative, auto-resolves with metadataBase
   },
   openGraph: {
     title: "Merge PDF - Free online PDF Merger fast and secure",
     description:
       "Combine multiple PDF files into one document with our free online PDF merger. Fast, secure, and browser-based.",
-    url: "/mergepdf", // relative to metadataBase
+    url: "https://www.jpgstopdf.com/mergepdf", // relative to metadataBase
     siteName: "JPGStoPDF",
     type: "website",
   },

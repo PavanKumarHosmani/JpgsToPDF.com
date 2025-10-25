@@ -11,7 +11,7 @@ export const metadata = {
     title: "PDF to JPG Converter - Convert Your PDF to Image Online",
     description:
       "Easily convert PDF pages into JPG images with our free online tool. Fast, secure, and browser-based.",
-    url: "/pdftojpg", // relative to metadataBase
+    url: "https://www.jpgstopdf.com/pdftojpg", // relative to metadataBase
     siteName: "JPGStoPDF",
     type: "website",
   },

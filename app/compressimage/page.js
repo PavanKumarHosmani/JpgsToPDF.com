@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
   alternates: {
-    canonical: "/compressimage", // ✅ relative, resolves with metadataBase
+    canonical: "https://www.jpgstopdf.com/compressimage", // ✅ relative, resolves with metadataBase
   },
   openGraph: {
     title: "Image Compressor - Reduce Image Size online",

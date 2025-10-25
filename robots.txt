@@ -1,0 +1,16 @@
+# Allow search engines to render Next.js static assets
+User-agent: *
+Allow: /_next/static/
+
+# Block unnecessary or private paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /node_modules/
+Disallow: /private/
+
+# Explicitly allow CSS and JS (Google recommends this for rendering)
+Allow: /*.js$
+Allow: /*.css$
+
+# Point to your sitemap
+Sitemap: https://www.jpgstopdf.com/sitemap.xml

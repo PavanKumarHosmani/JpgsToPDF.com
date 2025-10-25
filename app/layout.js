@@ -1,8 +1,8 @@
-// app/layout.js
-import "./styles/globals.css";
+import fs from "fs";
+import path from "path";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import StickyAdBanners from "../components/StickyAdBanners";  // ✅ Add this
+import StickyAdBanners from "../components/StickyAdBanners";
 import Script from "next/script";
 
 export const metadata = {
@@ -43,32 +43,62 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // ✅ Inline the small layout.css file directly
+  let inlineCSS = "";
+  try {
+    const cssPath = path.join(process.cwd(), ".next/static/css/app/layout.css");
+    inlineCSS = fs.readFileSync(cssPath, "utf8");
+  } catch {
+    inlineCSS = "body{background:#fff}"; // fallback if missing
+  }
+
+  // ✅ Also inline your global styles (optional)
+  try {
+    const globalPath = path.join(process.cwd(), "app/styles/globals.css");
+    const globalCSS = fs.readFileSync(globalPath, "utf8");
+    inlineCSS += "\n" + globalCSS;
+  } catch {}
+
   return (
     <html lang="en">
       <head>
-        <meta name="google-adsense-account" content="ca-pub-2964380688781577" />
+        {/* ✅ Inline critical CSS to eliminate render-blocking */}
+        <style dangerouslySetInnerHTML={{ __html: inlineCSS }} />
+
+        {/* ✅ Preconnect only necessary AdSense origins */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-        <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
+
+        {/* ✅ Preload key image for LCP */}
+        <link rel="preload" as="image" href="/apple-touch-icon.png" />
+
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-2964380688781577"
+        />
         <link rel="icon" href="/favicon.ico" />
       </head>
+
       <body>
         <Header />
-
-        {/* ✅ Sticky top & bottom AdSense banners */}
         <StickyAdBanners />
-
         {children}
         <Footer />
 
-        {/* ✅ AdSense global script (lazy) */}
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
+        {/* ✅ Lazy-load AdSense after full page load */}
+        <Script id="adsense-loader" strategy="afterInteractive">
+          {`
+            window.addEventListener('load', function() {
+              const s = document.createElement('script');
+              s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577';
+              s.async = true;
+              s.crossOrigin = 'anonymous';
+              document.body.appendChild(s);
+            });
+          `}
+        </Script>
 
-        {/* ✅ Structured Data */}
+        {/* ✅ Structured Data for SEO */}
         <Script
           id="ld-json"
           type="application/ld+json"
