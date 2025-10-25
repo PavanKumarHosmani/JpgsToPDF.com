@@ -9,6 +9,12 @@ const nextConfig = {
   compress: true,
   swcMinify: true,
 
+  // ✅ Modern JavaScript only (no legacy bundles)
+  experimental: {
+    legacyBrowsers: false,             // ✅ Serve modern JS only (saves ~10 KB)
+    optimizePackageImports: ["react"], // ✅ Tree-shake React internals
+  },
+
   // ✅ Image optimization
   images: {
     formats: ["image/avif", "image/webp"],
@@ -27,6 +33,16 @@ const nextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Prevent caching of dynamic or build resources
+      {
+        source: "/(_next|api)/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store, max-age=0",
           },
         ],
       },
@@ -70,12 +86,12 @@ const nextConfig = {
     // Enable Critters only for production client build
     if (!dev && !isServer && process.env.NODE_ENV === "production") {
       try {
-        const Critters = require("critters-webpack-plugin"); // use CommonJS require (fixes import.meta.url issue)
+        const Critters = require("critters-webpack-plugin");
         config.plugins.push(
           new Critters({
             preload: "swap",
             inlineFonts: true,
-            pruneSource: false, // Keep Tailwind CSS intact
+            pruneSource: false, // keep Tailwind intact
             reduceInlineStyles: true,
           })
         );
@@ -84,8 +100,13 @@ const nextConfig = {
       }
     }
 
-    // ✅ Remove outdated React profiling aliases (cause of build failure)
-    // (No need to manually alias react-dom in Next 14)
+    // ✅ Reduce bundle size even further
+    config.optimization.splitChunks = {
+      chunks: "all",
+      minSize: 30000,
+      maxSize: 240000,
+    };
+
     return config;
   },
 };

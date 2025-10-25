@@ -1,7 +1,6 @@
 import "./styles/globals.css"; // ✅ Tailwind + global CSS
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import StickyAdBanners from "../components/StickyAdBanners";
 import Script from "next/script";
 
 export const metadata = {
@@ -51,7 +50,12 @@ export default function RootLayout({ children }) {
 
         {/* ✅ Preload LCP image & CSS */}
         <link rel="preload" as="image" href="/apple-touch-icon.png" />
-        <link rel="preload" as="style" href="/_next/static/css/app/layout.css" />
+        <link
+          rel="preload"
+          as="style"
+          type="text/css"
+          href="/_next/static/css/app/layout.css"
+        />
 
         <meta
           name="google-adsense-account"
@@ -75,6 +79,7 @@ export default function RootLayout({ children }) {
             requestIdleCallback(() => {
               const cssLink = document.createElement('link');
               cssLink.rel = 'stylesheet';
+              cssLink.type = 'text/css'; // ✅ Fix MIME type warning
               cssLink.href = '/_next/static/css/app/layout.css';
               cssLink.media = 'print';
               cssLink.onload = () => (cssLink.media = 'all');
@@ -87,21 +92,22 @@ export default function RootLayout({ children }) {
       <body className="bg-white text-gray-900">
         {/* ✅ Layout structure */}
         <Header />
-        <StickyAdBanners />
         {children}
         <Footer />
 
         {/* ✅ Lazy-load AdSense after page load */}
+        {/* ✅ Delay AdSense Auto Ads by 2.5s for CLS stability */}
         <Script id="adsense-loader" strategy="afterInteractive">
           {`
-            window.addEventListener('load', function() {
-              requestIdleCallback(() => {
-                const s = document.createElement('script');
-                s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577';
-                s.async = true;
-                s.crossOrigin = 'anonymous';
-                document.body.appendChild(s);
-              });
+            window.addEventListener('load', function () {
+              setTimeout(() => {
+                const script = document.createElement('script');
+                script.src =
+                  'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577';
+                script.async = true;
+                script.crossOrigin = 'anonymous';
+                document.body.appendChild(script);
+              }, 2500); // ⏱ 2.5s delay
             });
           `}
         </Script>
