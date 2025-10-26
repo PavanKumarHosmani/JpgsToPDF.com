@@ -118,7 +118,7 @@ export default function PdfToJpg() {
 
           <label
             htmlFor="pdfUpload"
-            className="block mb-2 font-medium text-gray-700"
+            className="block mb-2 font-medium text-gray-800"
           >
             Select PDF files to convert
           </label>
@@ -129,15 +129,15 @@ export default function PdfToJpg() {
             multiple
             onChange={handleFileChange}
             aria-describedby="pdfHelp"
-            className="block w-full text-sm text-gray-700 
+            className="block w-full text-sm text-gray-800 
                        file:mr-4 file:py-2 file:px-4 
                        file:rounded-full file:border-0 
                        file:text-sm file:font-semibold
-                       file:bg-blue-50 file:text-blue-600
-                       hover:file:bg-blue-100
+                       file:bg-blue-50 file:text-blue-700
+                       hover:file:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500
                        cursor-pointer"
           />
-          <p id="pdfHelp" className="text-sm text-gray-500 mt-1">
+          <p id="pdfHelp" className="text-sm text-gray-700 mt-1">
             You can select multiple PDF files to convert each page into JPG
             images.
           </p>
@@ -150,7 +150,7 @@ export default function PdfToJpg() {
               <h3 className="font-semibold mb-2 text-gray-800">
                 Selected Files ({files.length})
               </h3>
-              <ul className="space-y-1 max-h-40 overflow-y-auto text-sm text-gray-600">
+              <ul className="space-y-1 max-h-40 overflow-y-auto text-sm text-gray-700">
                 {files.map((f, i) => (
                   <li key={i} className="truncate">
                     {f.name}
@@ -164,7 +164,12 @@ export default function PdfToJpg() {
             onClick={handleConvert}
             disabled={downloading}
             aria-label="Convert selected PDF files to JPG format"
-            className="mt-6 w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className={`mt-6 w-full font-semibold py-3 rounded-lg shadow transition-colors 
+              ${
+                downloading
+                  ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                  : "bg-blue-700 text-white hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              }`}
           >
             {downloading ? "Converting..." : "Convert to JPG"}
           </button>
@@ -178,7 +183,7 @@ export default function PdfToJpg() {
             >
               ✅ Conversion Completed!
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-800 mb-6">
               Your JPG files are ready. Click below to download them.
             </p>
 
@@ -188,12 +193,12 @@ export default function PdfToJpg() {
                   key={i}
                   className="flex justify-between items-center p-3 border rounded-lg shadow-sm bg-gray-50 hover:bg-gray-100"
                 >
-                  <span className="truncate text-gray-700">
+                  <span className="truncate text-gray-800">
                     {file.fileKey.split("/").pop()}
                   </span>
                   <button
                     onClick={() => handleDownload(file)}
-                    className="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                    className="bg-green-700 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-800 transition"
                     aria-label={`Download ${file.fileKey.split("/").pop()}`}
                   >
                     Download
@@ -205,7 +210,7 @@ export default function PdfToJpg() {
             <button
               onClick={handleReset}
               aria-label="Convert another PDF file to JPG"
-              className="mt-8 bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-blue-700 transition"
+              className="mt-8 bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow hover:bg-blue-800 focus:ring-2 focus:ring-blue-500 transition"
             >
               Convert Another
             </button>

@@ -43,24 +43,30 @@ export default function CompressPage() {
         }}
       />
 
-      <h1 className="text-3xl font-bold mb-6">Free Online Image Compressor</h1>
-      <p className="mb-6 text-gray-700">
-        Reduce the size of your images without compromising on quality. Upload
-        JPG, PNG, or other image formats and download optimized compressed
-        images instantly. You can also{" "}
-        <a href="/mergepdf" className="text-blue-600 hover:underline">
-          merge PDFs
-        </a>{" "}
-        or{" "}
-        <a href="/pdftojpg" className="text-blue-600 hover:underline">
-          convert PDF to JPG
-        </a>{" "}
-        with our other free tools.
-      </p>
-
       <ImageCompressor />
 
-      <section className="mt-10 text-gray-600">
+      <section className="mt-10 text-gray-800">
+        <h1 className="text-3xl font-bold mb-6">Free Online Image Compressor</h1>
+        <p className="mb-6 text-gray-800">
+          Reduce the size of your images without compromising on quality. Upload
+          JPG, PNG, or other image formats and download optimized compressed
+          images instantly. You can also{" "}
+          <a
+            href="/mergepdf"
+            className="text-blue-700 underline font-medium hover:text-blue-800 focus:text-blue-900 focus:underline decoration-2 decoration-blue-700"
+          >
+            merge PDFs
+          </a>{" "}
+          or{" "}
+          <a
+            href="/pdftojpg"
+            className="text-blue-700 underline font-medium hover:text-blue-800 focus:text-blue-900 focus:underline decoration-2 decoration-blue-700"
+          >
+            convert PDF to JPG
+          </a>{" "}
+          with our other free tools.
+        </p>
+
         <h2 className="text-2xl font-semibold mb-4">
           Why use our Image Compressor?
         </h2>
@@ -74,11 +80,11 @@ export default function CompressPage() {
 
       <section className="max-w-4xl mx-auto mb-16">
         <h2 className="text-2xl font-bold mb-4">Tips for Compressing Images</h2>
-        <p className="text-gray-700 mb-2">
+        <p className="text-gray-800 mb-2">
           Image compression is important for faster website loading, easy
           sharing, and reduced storage usage. Here are some tips:
         </p>
-        <ul className="list-disc list-inside text-gray-700 space-y-2">
+        <ul className="list-disc list-inside text-gray-800 space-y-2">
           <li>Use JPG for photographs and PNG for graphics with transparency.</li>
           <li>Resize large images before uploading for best results.</li>
           <li>Our compressor balances quality and size automatically.</li>
@@ -95,32 +101,32 @@ export default function CompressPage() {
         </h2>
         <div className="space-y-4">
           <details className="border rounded-lg p-4">
-            <summary className="font-medium cursor-pointer">
+            <summary className="font-medium cursor-pointer text-gray-800">
               Is this image compressor free?
             </summary>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-700">
               Yes, our online image compressor is completely free to use without
               signup.
             </p>
           </details>
           <details className="border rounded-lg p-4">
-            <summary className="font-medium cursor-pointer">
+            <summary className="font-medium cursor-pointer text-gray-800">
               Will image quality be reduced?
             </summary>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-700">
               Our tool compresses file size while keeping high visual quality.
             </p>
           </details>
           <details className="border rounded-lg p-4">
-            <summary className="font-medium cursor-pointer">
+            <summary className="font-medium cursor-pointer text-gray-800">
               Are my files safe?
             </summary>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-700">
               Yes, files are processed securely and automatically deleted after
               compression.
             </p>
           </details>
-          <p className="mb-4">
+          <p className="mb-4 text-gray-800">
             The <strong>Compress Images tool</strong> from JPGStoPDF.COM helps
             you reduce the file size of your photos quickly and securely. Upload
             your JPG, PNG, or other image formats and our system will compress
@@ -128,7 +134,7 @@ export default function CompressPage() {
             sharing, easier uploads, and more storage space saved.
           </p>
 
-          <p className="mb-4">
+          <p className="mb-4 text-gray-800">
             This tool is designed for everyone—students submitting assignments,
             professionals optimizing images for presentations, or website owners
             improving page speed with lightweight graphics. You don’t need to
@@ -137,21 +143,21 @@ export default function CompressPage() {
             compression, keeping your privacy safe.
           </p>
 
-          <p className="mb-4">
+          <p className="mb-4 text-gray-800">
             Using our image compressor is simple: just upload your images, choose
             your preferred compression level, and download the optimized files
             instantly. You can compress multiple images at once, making it a fast
             and reliable option for batch processing.
           </p>
 
-          <p className="mb-4">
+          <p className="mb-4 text-gray-800">
             Unlike many free tools, JPGStoPDF.COM does not add watermarks or
             hidden restrictions. We believe in providing free, high-quality
             online tools that work seamlessly across devices. Whether you’re on a
             laptop, tablet, or smartphone, you can compress images online anytime.
           </p>
 
-          <p className="mb-8">
+          <p className="mb-8 text-gray-800">
             Start reducing your file sizes today with JPGStoPDF.COM’s trusted
             <strong> free image compression tool</strong> and enjoy faster
             uploads, smoother sharing, and more efficient storage.

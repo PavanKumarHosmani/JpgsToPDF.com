@@ -1,3 +1,4 @@
+// app/layout.js
 import "./styles/globals.css"; // ✅ Tailwind + global CSS
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -44,49 +45,30 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ Preconnect for faster AdSense DNS */}
+        {/* ✅ Preconnect for AdSense performance */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-
-        {/* ✅ Preload LCP image & CSS */}
-        <link rel="preload" as="image" href="/apple-touch-icon.png" />
         <link
-          rel="preload"
-          as="style"
-          type="text/css"
-          href="/_next/static/css/app/layout.css"
+          rel="preconnect"
+          href="https://googleads.g.doubleclick.net"
+          crossOrigin="anonymous"
         />
 
+        {/* ✅ Basic meta */}
         <meta
           name="google-adsense-account"
           content="ca-pub-2964380688781577"
         />
         <link rel="icon" href="/favicon.ico" />
 
-        {/* ✅ Inline minimal critical CSS for instant paint */}
+        {/* ✅ Inline minimal critical CSS */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              body { background: #fff; color: #111827; }
+              body { background: #fff; color: #111827; font-family: system-ui, sans-serif; }
               header, footer { display: block; }
             `,
           }}
         />
-
-        {/* ✅ Defer layout.css loading (non-blocking print trick) */}
-        <Script id="defer-layout-css" strategy="afterInteractive">
-          {`
-            requestIdleCallback(() => {
-              const cssLink = document.createElement('link');
-              cssLink.rel = 'stylesheet';
-              cssLink.type = 'text/css'; // ✅ Fix MIME type warning
-              cssLink.href = '/_next/static/css/app/layout.css';
-              cssLink.media = 'print';
-              cssLink.onload = () => (cssLink.media = 'all');
-              document.head.appendChild(cssLink);
-            });
-          `}
-        </Script>
       </head>
 
       <body className="bg-white text-gray-900">
@@ -95,27 +77,35 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
 
-        {/* ✅ Lazy-load AdSense after page load */}
-        {/* ✅ Delay AdSense Auto Ads by 2.5s for CLS stability */}
-        <Script id="adsense-loader" strategy="afterInteractive">
+        {/* ✅ Proper AdSense loader (inside body to avoid head warnings) */}
+        <Script
+          id="adsense-script"
+          async
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
+        />
+
+        {/* ✅ Balanced 2-second delay for CLS stability and performance */}
+        <Script id="adsense-delay" strategy="afterInteractive">
           {`
             window.addEventListener('load', function () {
               setTimeout(() => {
-                const script = document.createElement('script');
-                script.src =
-                  'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577';
-                script.async = true;
-                script.crossOrigin = 'anonymous';
-                document.body.appendChild(script);
-              }, 2500); // ⏱ 2.5s delay
+                try {
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                } catch (e) {
+                  console.warn('AdSense not ready yet:', e);
+                }
+              }, 2000); // ✅ 2 seconds delay
             });
           `}
         </Script>
 
-        {/* ✅ Structured Data for SEO */}
+        {/* ✅ Structured data for SEO */}
         <Script
           id="ld-json"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",

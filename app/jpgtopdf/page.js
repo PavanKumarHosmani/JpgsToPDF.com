@@ -33,14 +33,13 @@ export default function ConvertPage() {
       <h1 className="text-3xl font-bold text-center mb-6">
         JPG to PDF Converter
       </h1>
+      <ImageToPdf />
+
+      <section className="mt-12 max-w-3xl mx-auto">
       <p className="text-gray-600 text-center max-w-2xl mx-auto mb-8">
         Upload your images (JPG, PNG, WebP) and convert them into a single PDF
         instantly. 100% free, secure, and fast.
       </p>
-
-      <ImageToPdf />
-
-      <section className="mt-12 max-w-3xl mx-auto">
         <h2 className="text-xl font-semibold mb-3">Why use JPGStoPDF?</h2>
         <ul className="list-disc list-inside space-y-1 text-gray-700">
           <li>Convert multiple images into one PDF quickly</li>

@@ -164,7 +164,6 @@ export default function MergePdf() {
 
   return (
     <div className="relative p-8 border rounded-lg shadow-md bg-white max-w-lg mx-auto transition-all duration-300">
-      {/* ✅ Toast Notification */}
       {toast && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50 animate-fadeIn">
           {toast}
@@ -173,11 +172,14 @@ export default function MergePdf() {
 
       {!downloadUrl ? (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-center">
-            Smart Merge & Auto-Compress PDFs
+          <h2 className="text-xl font-semibold mb-4 text-center text-gray-800">
+            {/* Smart Merge & Auto-Compress PDFs */}
           </h2>
 
-          <label htmlFor="pdfInput" className="block mb-2 font-medium text-gray-700">
+          <label
+            htmlFor="pdfInput"
+            className="block mb-2 font-medium text-gray-800"
+          >
             Select PDF files to merge
           </label>
           <input
@@ -187,25 +189,30 @@ export default function MergePdf() {
             multiple
             onChange={handleFileChange}
             aria-describedby="pdfHelp"
-            className="block w-full text-sm text-gray-700 
+            className="block w-full text-sm text-gray-800 
                        file:mr-4 file:py-2 file:px-4 
                        file:rounded-full file:border-0 
                        file:text-sm file:font-semibold
-                       file:bg-green-50 file:text-green-600
+                       file:bg-green-50 file:text-green-700
                        hover:file:bg-green-100 cursor-pointer"
           />
-          <p id="pdfHelp" className="text-sm text-gray-500 mt-1">
+          <p id="pdfHelp" className="text-sm text-gray-700 mt-1">
             You can select multiple PDFs to combine into one.
           </p>
 
           {files.length > 0 && (
-            <div className="mt-4 bg-white shadow rounded-lg p-4" aria-live="polite">
+            <div
+              className="mt-4 bg-white shadow rounded-lg p-4"
+              aria-live="polite"
+            >
               <h3 className="font-semibold mb-2 text-gray-800">
                 Selected Files ({files.length})
               </h3>
-              <ul className="space-y-1 max-h-40 overflow-y-auto text-sm text-gray-600">
+              <ul className="space-y-1 max-h-40 overflow-y-auto text-sm text-gray-700">
                 {files.map((f, i) => (
-                  <li key={i} className="truncate">{f.name}</li>
+                  <li key={i} className="truncate">
+                    {f.name}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -215,7 +222,7 @@ export default function MergePdf() {
             onClick={handleMerge}
             disabled={loading}
             aria-label="Merge selected PDF files"
-            className="mt-6 w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 disabled:opacity-50"
+            className="mt-6 w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {loading ? "Compressing & Merging..." : "Merge PDFs"}
           </button>
@@ -225,21 +232,26 @@ export default function MergePdf() {
           <h2 className="text-2xl font-bold mb-2 text-green-700">
             ✅ Merge Completed!
           </h2>
-          <p className="text-gray-600 mb-6">
-            Your merged PDF is ready. Click below to download it.
+          <p className="text-gray-800 mb-6">
+            Your merged PDF is ready. Click below to download it.{" "}
+            <a
+              href="#download"
+              className="text-blue-700 underline font-semibold hover:text-blue-800 focus:text-blue-900 focus:underline decoration-2 decoration-blue-700 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            >
+              Learn more
+            </a>
           </p>
 
-          {/* ✅ Mobile-friendly, same-tab download */}
           <button
             onClick={handleDownload}
-            className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
+            className="inline-block bg-green-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
           >
             Download PDF
           </button>
 
           <button
             onClick={handleReset}
-            className="mt-6 block mx-auto bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+            className="mt-6 block mx-auto bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
           >
             Merge Another Batch
           </button>

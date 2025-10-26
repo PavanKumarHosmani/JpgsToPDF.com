@@ -8,7 +8,6 @@ export default function Header() {
         <Link href="/" className="text-lg md:text-2xl font-bold">
           JPGStoPDF
         </Link>
-
         {/* Navigation - always visible */}
         <nav className="flex flex-wrap gap-3 md:gap-6 text-sm md:text-base mt-2 md:mt-0">
           <Link href="/" className="hover:underline">Home</Link>
