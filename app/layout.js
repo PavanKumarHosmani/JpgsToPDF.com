@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
                 } catch (e) {
                   console.warn('AdSense not ready yet:', e);
                 }
-              }, 2000); // ✅ 2 seconds delay
+              }, 2500); // ✅ 2 seconds delay
             });
           `}
         </Script>
