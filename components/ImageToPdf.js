@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import axios from "axios";
 
 export default function ImageToPdf() {
   const [files, setFiles] = useState([]);
@@ -19,50 +20,22 @@ export default function ImageToPdf() {
   };
 
   const handleConvert = async () => {
-    if (files.length === 0) {
-      alert("Please select image files.");
-      return;
-    }
-
+    if (!files.length) return alert("Please select image files.");
     setLoading(true);
+
     try {
-      // ✅ Dynamically import image-compression only now
-      const { default: imageCompression } = await import(
-        /* webpackChunkName: "img-compression" */
-        "browser-image-compression"
-      );
-
-      // ✅ Parallel compression using Promise.all → uses Web Workers internally
-      const compressedFiles = await Promise.all(
-        files.map(async (file) => {
-          const options = {
-            maxSizeMB: 2,
-            maxWidthOrHeight: 2500,
-            useWebWorker: true,
-            initialQuality: 0.85,
-          };
-          return imageCompression(file, options);
-        })
-      );
-
-      // ✅ Lazy-load axios only when uploading
-      const { default: axios } = await import("axios");
-
-      // 1️⃣ Request presigned upload URLs
+      // 1️⃣ Request presigned URLs
       const { data: urlData } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/upload-urls`,
         { fileCount: files.length }
       );
-
       const { operationId, uploadUrls } = urlData;
 
-      // 2️⃣ Upload all files in parallel
+      // 2️⃣ Upload files in parallel
       await Promise.all(
         uploadUrls.map((u, i) =>
-          axios.put(u.url, compressedFiles[i], {
-            headers: {
-              "Content-Type": files[i].type || "application/octet-stream",
-            },
+          axios.put(u.url, files[i], {
+            headers: { "Content-Type": files[i].type || "application/octet-stream" },
           })
         )
       );
@@ -77,6 +50,7 @@ export default function ImageToPdf() {
       );
 
       setDownloadUrl(convData.downloadUrl);
+      showToast("✅ Conversion completed!");
     } catch (err) {
       console.error(err);
       alert("Conversion failed. Check console.");
@@ -86,25 +60,21 @@ export default function ImageToPdf() {
   };
 
   const handleDownload = async () => {
-    try {
-      showToast("📥 Download started...");
-      const res = await fetch(downloadUrl);
-      const blob = await res.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
+    if (!downloadUrl) return;
+    showToast("📥 Download started...");
+    const res = await fetch(downloadUrl);
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
 
-      const a = document.createElement("a");
-      a.href = blobUrl;
-      a.download = "converted.pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(blobUrl);
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = "converted.pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(blobUrl);
 
-      showToast("✅ Download complete!");
-    } catch (err) {
-      console.error("Download failed:", err);
-      showToast("❌ Download failed!");
-    }
+    showToast("✅ Download complete!");
   };
 
   const handleReset = () => {
@@ -113,20 +83,16 @@ export default function ImageToPdf() {
   };
 
   return (
-    <div className="relative max-w-2xl mx-auto p-6 border rounded-xl shadow bg-white transition-all duration-300">
-      {/* ✅ Toast Notification */}
+    <div className="max-w-2xl mx-auto p-6 border rounded-xl shadow bg-white transition-all duration-300">
       {toast && (
-        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg shadow-lg text-sm z-50 animate-fadeIn">
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg text-sm z-50">
           {toast}
         </div>
       )}
 
       {!downloadUrl ? (
         <>
-          <label
-            htmlFor="file-upload"
-            className="block mb-2 font-medium text-gray-700"
-          >
+          <label htmlFor="file-upload" className="block mb-2 font-medium text-gray-700">
             Select image files to convert
           </label>
           <input
@@ -135,34 +101,14 @@ export default function ImageToPdf() {
             accept="image/*"
             multiple
             onChange={handleFileChange}
-            className="block w-full text-sm text-gray-700 
-              file:mr-4 file:py-2 file:px-4 
-              file:rounded-full file:border-0 
-              file:text-sm file:font-semibold
-              file:bg-green-50 file:text-green-600
-              hover:file:bg-green-100
-              cursor-pointer"
+            className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-600 hover:file:bg-green-100 cursor-pointer"
           />
-          <p id="file-help" className="text-sm text-gray-500 mt-1">
-            Supports JPG, PNG, and WebP formats.
-          </p>
-
           {files.length > 0 && (
-            <div
-              className="mt-4 bg-white shadow rounded-lg p-4"
-              aria-live="polite"
-            >
-              <h3 className="font-semibold mb-2 text-gray-800">
-                Selected Files ({files.length})
-              </h3>
-              <ul className="space-y-1 max-h-40 overflow-y-auto text-sm text-gray-600">
-                {files.map((f, i) => (
-                  <li key={i} className="truncate">
-                    {f.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="mt-4 max-h-40 overflow-y-auto text-sm text-gray-600">
+              {files.map((f) => (
+                <li key={f.name} className="truncate">{f.name}</li>
+              ))}
+            </ul>
           )}
 
           <button
@@ -175,14 +121,9 @@ export default function ImageToPdf() {
         </>
       ) : (
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-2 text-green-700">
-            ✅ Conversion Completed!
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Your PDF is ready. Click below to download it.
-          </p>
+          <h2 className="text-2xl font-bold mb-2 text-green-700">✅ Conversion Completed!</h2>
+          <p className="text-gray-600 mb-6">Your PDF is ready. Click below to download it.</p>
 
-          {/* ✅ Same logic, but stays on same page */}
           <button
             onClick={handleDownload}
             className="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
