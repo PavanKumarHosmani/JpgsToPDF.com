@@ -83,9 +83,9 @@ export default function ImageToPdf() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 border rounded-xl shadow bg-white transition-all duration-300">
+    <div className="max-w-2xl mx-auto p-6 border rounded-xl shadow bg-white transition-opacity duration-300 min-h-[420px]">
       {toast && (
-        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg text-sm z-50">
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded-lg text-sm z-50 will-change-transform">
           {toast}
         </div>
       )}

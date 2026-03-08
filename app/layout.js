@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Script from "next/script";
 
+export const revalidate = 86400; // cache page for 24 hours
+
 export const metadata = {
   title: "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
   description:
@@ -47,11 +49,9 @@ export default function RootLayout({ children }) {
       <head>
         {/* ✅ Preconnect for AdSense performance */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link
-          rel="preconnect"
-          href="https://googleads.g.doubleclick.net"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous"/>
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
 
         {/* ✅ Basic meta */}
         <meta
@@ -64,7 +64,13 @@ export default function RootLayout({ children }) {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              body { background: #fff; color: #111827; font-family: system-ui, sans-serif; }
+              body {
+  background:#fff;
+  color:#111827;
+  font-family:system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
               header, footer { display: block; }
             `,
           }}
@@ -77,11 +83,11 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
 
-        {/* ✅ Proper AdSense loader (inside body to avoid head warnings) */}
+        {/* ✅ Proper AdSense loader (inside body to avoid head warnings) change Strategy to "afterInteractive"*/} 
         <Script
           id="adsense-script"
           async
-          strategy="afterInteractive"
+          strategy="lazyOnload" 
           crossOrigin="anonymous"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2964380688781577"
         />
@@ -96,7 +102,7 @@ export default function RootLayout({ children }) {
                 } catch (e) {
                   console.warn('AdSense not ready yet:', e);
                 }
-              }, 3000); // ✅ 2 seconds delay
+              }, 3500); // ✅ 2 seconds delay
             });
           `}
         </Script>
@@ -109,8 +115,10 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebPage",
-              url: "https://www.jpgstopdf.com",
+              "@type": "WebApplication",
+              "applicationCategory": "UtilityApplication",
+              "operatingSystem": "All",
+              "url": "https://www.jpgstopdf.com",
               name:
                 "JPG to PDF Converter | Free JPG, PNG & WebP to PDF Converter",
               description:
