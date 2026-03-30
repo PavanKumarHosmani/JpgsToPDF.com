@@ -35,6 +35,8 @@ export const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+     "@id": "https://www.jpgstopdf.com/jpgtopdf#app",
+    inLanguage: "en",
     name: "Free JPG to PDF Converter",
     description:
       "Free online JPG to PDF converter. Convert JPG, PNG, and WebP images into PDF instantly without losing quality.",
@@ -49,6 +51,7 @@ export const jsonLd = [
   },
   {
     "@context": "https://schema.org",
+    
     "@type": "FAQPage",
     mainEntity: [
       {
