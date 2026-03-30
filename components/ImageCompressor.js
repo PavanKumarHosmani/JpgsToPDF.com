@@ -21,13 +21,13 @@ export default function ImageCompressor() {
     setDownloadLinks([]);
   };
 
-  const handleUploadAndCompress = async () => {
-    if (!files || files.length === 0) return;
+const handleUploadAndCompress = async () => {
+  if (!files || files.length === 0) return;
   setLoading(true);
   setProgress(10);
 
   try {
-    // ❌ Removed: browser-image-compression import
+    // ❌ removed: imageCompression import
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/upload-urls`,
@@ -49,8 +49,8 @@ export default function ImageCompressor() {
       const file = files[i];
       const { url, fileKey } = uploadUrls[i];
 
-      // ❌ Removed compression logic
-      // ✅ Use original file directly
+      // ❌ removed: compression options + logic
+      // ✅ directly use original file
       await fetch(url, {
         method: "PUT",
         headers: { "Content-Type": file.type },
@@ -59,9 +59,9 @@ export default function ImageCompressor() {
 
       setProgress(40 + ((i + 1) / files.length) * 30);
 
-      // ✅ Keep backend compression call as-is
+      // ✅ keep backend compression call SAME
       const compressRes = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/convert/start`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -92,7 +92,7 @@ export default function ImageCompressor() {
     setTimeout(() => setProgress(0), 2000);
     setLoading(false);
   }
-  };
+};
 
   const handleDownload = async (file) => {
     try {

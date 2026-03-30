@@ -1,38 +1,105 @@
 import ImageToPdf from "../../components/ImageToPdf";
 
 export const metadata = {
-  title: "JPG to PDF Converter | Images JPG to PDF online",
+  title: "Free JPG to PDF Converter Online | Convert Images to PDF Instantly",
   description:
-    "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
+    "Convert JPG, PNG, and WebP images to PDF online for free. Merge multiple images into one PDF instantly. Fast, secure, and no signup required.",
+  metadataBase: new URL("https://www.jpgstopdf.com"),
   alternates: {
-    canonical: "https://www.jpgstopdf.com/jpgtopdf", // relative, resolves against metadataBase
+    canonical: "/jpgtopdf",
   },
+    robots: {
+    index: true,
+    follow: true,
+  },
+  keywords: [
+  "jpg to pdf",
+  "convert jpg to pdf",
+  "image to pdf",
+  "png to pdf",
+  "merge images to pdf",
+  "free jpg to pdf converter"
+],
   openGraph: {
-    title: "JPG to PDF Converter | Images JPG to PDF online",
+    title: "Free JPG to PDF Converter Online",
     description:
-      "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
-    url: "https://www.jpgstopdf.com/jpgtopdf", // relative to metadataBase
+      "Convert JPG, PNG, and WebP images into PDF instantly. Free, fast, and secure online tool.",
+    url: "https://www.jpgstopdf.com/jpgtopdf",
     siteName: "JPGStoPDF",
     type: "website",
   },
 };
 
-// optional: JSON-LD for consistency
-export const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "JPG to PDF Converter",
-  description:
-    "Convert JPG, PNG, and WebP images into PDF with one click. Fast & secure online image to PDF conversion.",
-  url: "https://www.jpgstopdf.com/jpgtopdf", // absolute URL, no trailing slash
-};
+
+export const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Free JPG to PDF Converter",
+    description:
+      "Free online JPG to PDF converter. Convert JPG, PNG, and WebP images into PDF instantly without losing quality.",
+    url: "https://www.jpgstopdf.com/jpgtopdf",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Is this JPG to PDF converter free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, our tool is completely free to use with no hidden charges.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does it reduce image quality?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No, your images are converted without losing quality.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I convert multiple images at once?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, you can upload multiple images and merge them into a single PDF.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is my data secure?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Your files are processed securely and are not stored permanently.",
+        },
+      },
+    ],
+  },
+];
+
+
 
 export default function ConvertPage() {
   return (
+  <>
+      <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        JPG to PDF Converter
-      </h1>
+<h1 className="text-3xl font-bold text-center mb-6">
+  Free JPG to PDF Converter Online (Fast & Secure)
+</h1>
       <ImageToPdf />
 
       <section className="mt-12 max-w-3xl mx-auto">
@@ -40,83 +107,95 @@ export default function ConvertPage() {
         Upload your images (JPG, PNG, WebP) and convert them into a single PDF
         instantly. 100% free, secure, and fast.
       </p>
-        <h2 className="text-xl font-semibold mb-3">Why use JPGStoPDF?</h2>
-        <ul className="list-disc list-inside space-y-1 text-gray-700">
-          <li>Convert multiple images into one PDF quickly</li>
-          <li>No software installation required</li>
-          <li>Files are processed securely in the cloud</li>
-          <li>Supports JPG, PNG, and WebP formats</li>
-        </ul>
       </section>
+      <section className="max-w-4xl mx-auto mt-12 text-gray-700">
 
-      <section className="max-w-4xl mx-auto mb-16">
-        <h2 className="text-2xl font-bold mb-4">
-          Everything About JPG to PDF Conversion
-        </h2>
-        <p className="text-gray-700 mb-4">
-          JPG to PDF conversion is one of the most commonly used tools on our
-          website. It allows you to take one or multiple images and turn them
-          into a single, shareable PDF file in just seconds. Our converter keeps
-          the original image quality intact, so your photos, scanned documents,
-          or graphics look exactly as expected.
-        </p>
-        <p className="text-gray-700 mb-4">
-          Unlike heavy desktop software, our JPG to PDF tool works directly in
-          your browser. There’s no need to download or install anything — simply
-          upload your images, arrange them in the order you prefer, and download
-          your PDF. The process is fast, secure, and works on any device —
-          mobile, tablet, or desktop.
-        </p>
-        <ul className="list-disc list-inside text-gray-700 space-y-2">
-          <li>✅ Convert multiple JPG images into a single PDF instantly.</li>
-          <li>✅ Maintain original image quality without blurry results.</li>
-          <li>✅ Works with JPG, PNG, and WebP images seamlessly.</li>
-          <li>✅ Safe & secure — files are auto-deleted after processing.</li>
-        </ul>
-        <p className="text-gray-700 mt-4">
-          Whether you’re submitting scanned assignments, creating a photo album,
-          or organizing receipts, our free JPG to PDF converter is the perfect
-          solution.
-        </p>
-        <p className="mb-4">
-          The <strong>JPG to PDF Converter</strong> from JPGStoPDF.COM makes it
-          quick and easy to turn your images into high-quality PDF documents.
-          Whether you have a single photo or multiple images, you can combine
-          them into one neatly organized PDF in just a few clicks. This is ideal
-          for creating digital photo albums, sharing assignments, or submitting
-          official documents that require PDF format.
-        </p>
+      <h2 className="text-2xl font-semibold mb-3">
+  Convert JPG to PDF Online for Free
+</h2>
 
-        <p className="mb-4">
-          Our tool supports JPG, PNG, and other common image types, so you don’t
-          have to worry about compatibility. Simply upload your pictures and let
-          our system handle the conversion while preserving original image
-          quality. The process is completely secure, with all files
-          automatically deleted after conversion to protect your privacy.
-        </p>
+<p className="mb-4">
+  Use our free JPG to PDF converter to quickly merge multiple images into a single PDF file. No signup required — upload your files, convert instantly, and download your PDF in seconds.
+</p>
 
-        <p className="mb-4">
-          Using our JPG to PDF converter is straightforward: upload your images,
-          arrange them in the order you want, and click convert. In seconds,
-          you’ll receive a downloadable PDF file. You can combine multiple
-          images at once, making it much faster than manual methods or offline
-          software.
-        </p>
+  <p className="mb-4">
+    Convert JPG images to PDF online quickly and easily using our free tool. Whether you want to merge multiple images into a single PDF or convert a single photo, our JPG to PDF converter delivers fast and reliable results. It supports JPG, PNG, and WebP formats, making it a versatile solution for all your image-to-PDF needs.
+  </p>
 
-        <p className="mb-4">
-          Unlike many other free tools, JPGStoPDF.COM does not add watermarks,
-          limitations, or hidden charges. Our service works across all devices,
-          whether you’re on a computer, tablet, or mobile phone, so you can
-          convert images to PDF anytime and anywhere.
-        </p>
+  <p className="mb-6">
+    This online tool works directly in your browser, so there’s no need to install software or create an account. Simply upload your images, arrange them if needed, and download your PDF instantly. It’s designed to be fast, secure, and accessible on all devices including mobile, tablet, and desktop.
+  </p>
 
-        <p className="mb-8">
-          Start converting your images today with our trusted
-          <strong> free JPG to PDF online tool</strong>. Enjoy the convenience
-          of professional-quality PDFs without the need for downloads or
-          expensive software.
-        </p>
-      </section>
+  <h2 className="text-2xl font-semibold mb-3">
+    How to Convert JPG to PDF Online
+  </h2>
+  <ol className="list-decimal list-inside space-y-2 mb-6">
+    <li>Upload your JPG, PNG, or WebP images</li>
+    <li>Arrange images in your preferred order</li>
+    <li>Click on "Convert to PDF"</li>
+    <li>Download your PDF file instantly</li>
+  </ol>
+
+  <h2 className="text-2xl font-semibold mb-3">
+    Why Use Our JPG to PDF Converter?
+  </h2>
+  <ul className="list-disc list-inside space-y-2 mb-6">
+    <li>Merge multiple images into a single PDF file</li>
+    <li>Maintain original image quality without compression loss</li>
+    <li>No software installation required</li>
+    <li>Fast processing and instant downloads</li>
+    <li>Supports JPG, PNG, and WebP formats</li>
+    <li>Works on all devices including mobile and desktop</li>
+  </ul>
+
+  <h2 className="text-2xl font-semibold mb-3">
+    Fast, Secure & Reliable Conversion
+  </h2>
+  <p className="mb-4">
+    Our JPG to PDF converter is built with performance and security in mind. All files are processed securely, and we ensure that your data is handled safely during conversion. The tool is optimized for speed, allowing you to convert images into PDF within seconds, even when working with multiple files.
+  </p>
+
+  <p className="mb-6">
+    Unlike many other tools, we focus on maintaining the original quality of your images. This means your converted PDF will retain clarity and resolution, making it suitable for professional use such as document submission, presentations, or record keeping.
+  </p>
+
+  <h2 className="text-2xl font-semibold mb-3">
+    Use Cases of JPG to PDF Conversion
+  </h2>
+  <ul className="list-disc list-inside space-y-2 mb-6">
+    <li>Submit scanned documents or assignments</li>
+    <li>Create photo albums in PDF format</li>
+    <li>Organize receipts and invoices</li>
+    <li>Share multiple images as a single file</li>
+  </ul>
+
+  <h2 className="text-2xl font-semibold mb-3">
+    Frequently Asked Questions
+  </h2>
+
+  <div className="space-y-4">
+    <div>
+      <h3 className="font-semibold">Is this JPG to PDF converter free?</h3>
+      <p>Yes, our tool is completely free to use with no hidden charges.</p>
+    </div>
+
+    <div>
+      <h3 className="font-semibold">Does it reduce image quality?</h3>
+      <p>No, your images are converted without losing quality.</p>
+    </div>
+
+    <div>
+      <h3 className="font-semibold">Can I convert multiple images at once?</h3>
+      <p>Yes, you can upload multiple images and merge them into a single PDF.</p>
+    </div>
+
+    <div>
+      <h3 className="font-semibold">Is my data secure?</h3>
+      <p>Your files are processed securely and are not stored permanently.</p>
+    </div>
+  </div>
+</section>
     </main>
+    </>
   );
 }
