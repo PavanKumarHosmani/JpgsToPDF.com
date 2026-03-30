@@ -61,7 +61,7 @@ export default function ImageCompressor() {
 
       // ✅ Keep backend compression call as-is
       const compressRes = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/convert/start`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
