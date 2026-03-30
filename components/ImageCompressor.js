@@ -23,81 +23,75 @@ export default function ImageCompressor() {
 
   const handleUploadAndCompress = async () => {
     if (!files || files.length === 0) return;
-    setLoading(true);
-    setProgress(10);
+  setLoading(true);
+  setProgress(10);
 
-    try {
-      const { default: imageCompression } = await import("browser-image-compression");
+  try {
+    // ❌ Removed: browser-image-compression import
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/upload-urls`,
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/upload-urls`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileCount: files.length }),
+      }
+    );
+
+    if (!res.ok) throw new Error("Failed to get upload URLs");
+
+    const { operationId, uploadUrls } = await res.json();
+    setProgress(25);
+
+    const newDownloadLinks = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const { url, fileKey } = uploadUrls[i];
+
+      // ❌ Removed compression logic
+      // ✅ Use original file directly
+      await fetch(url, {
+        method: "PUT",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+
+      setProgress(40 + ((i + 1) / files.length) * 30);
+
+      // ✅ Keep backend compression call as-is
+      const compressRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ fileCount: files.length }),
+          body: JSON.stringify({
+            operationId,
+            fileKey,
+            targetSizeKb: targetSize,
+          }),
         }
       );
 
-      if (!res.ok) throw new Error("Failed to get upload URLs");
+      if (!compressRes.ok) throw new Error("Compression failed on backend");
 
-      const { operationId, uploadUrls } = await res.json();
-      setProgress(25);
+      const { downloadUrl } = await compressRes.json();
 
-      const newDownloadLinks = [];
-
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const { url, fileKey } = uploadUrls[i];
-
-        const options = {
-          maxSizeMB: targetSize / 1024,
-          maxWidthOrHeight: 2500,
-          useWebWorker: true,
-          initialQuality: 0.8,
-        };
-
-        const compressedFile = await imageCompression(file, options);
-
-        await fetch(url, {
-          method: "PUT",
-          headers: { "Content-Type": compressedFile.type },
-          body: compressedFile,
-        });
-
-        setProgress(40 + ((i + 1) / files.length) * 30);
-
-        const compressRes = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/image/compress/start`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              operationId,
-              fileKey,
-              targetSizeKb: targetSize,
-            }),
-          }
-        );
-
-        if (!compressRes.ok) throw new Error("Compression failed on backend");
-
-        const { downloadUrl } = await compressRes.json();
-
-        newDownloadLinks.push({
-          name: file.name.replace(/\.(?=[^.]+$)/, "-compressed."),
-          url: downloadUrl,
-        });
-      }
-
-      setDownloadLinks(newDownloadLinks);
-      setProgress(100);
-    } catch (err) {
-      console.error("Compression error", err);
-      alert("❌ Something went wrong. Please try again.");
-    } finally {
-      setTimeout(() => setProgress(0), 2000);
-      setLoading(false);
+      newDownloadLinks.push({
+        name: file.name.replace(/\.(?=[^.]+$)/, "-compressed."),
+        url: downloadUrl,
+      });
     }
+
+    setDownloadLinks(newDownloadLinks);
+    setProgress(100);
+  } catch (err) {
+    console.error("Compression error", err);
+    alert("❌ Something went wrong. Please try again.");
+  } finally {
+    setTimeout(() => setProgress(0), 2000);
+    setLoading(false);
+  }
   };
 
   const handleDownload = async (file) => {
