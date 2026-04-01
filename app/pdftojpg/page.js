@@ -46,7 +46,7 @@ export default function ToJpgPage() {
       <PdfToJpg />
 
       <section className="mt-10 text-gray-800">
-        <h1 className="text-3xl font-bold mb-6">Free PDF to JPG Converter</h1>
+        <h1 className="text-3xl font-bold mb-6">Free PDF to JPG Converter Online (Convert PDF Pages to JPG Images)</h1>
         <p className="mb-6 text-gray-800">
           Convert your PDF pages into high-quality JPG images instantly. Works online
           without installation. You can also{" "}
@@ -117,7 +117,7 @@ export default function ToJpgPage() {
 
         <p className="mb-4 text-gray-800">
           Unlike many tools that impose limits or add watermarks, JPGStoPDF.COM
-          provides a <strong>free PDF to JPG converter</strong> with no hidden
+          provides a <strong>Free PDF to JPG Converter Online (Convert PDF Pages to JPG Images)</strong> with no hidden
           restrictions. It works smoothly across desktops, laptops, tablets, and
           mobile devices so you can convert PDF files anytime, anywhere without
           installing extra software.

@@ -87,6 +87,15 @@ export default function HomePage() {
             Turn images into a single PDF file.
           </p>
         </Link>
+         <Link
+          href="/unlock-pdf"
+          className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
+        >
+          <h2 className="font-semibold text-xl mb-2">Unlock PDF</h2>
+          <p className="text-sm text-gray-600">
+            Remove password protection from PDF files.
+          </p>
+        </Link>
       </section>
 
       {/* Benefits */}

@@ -15,6 +15,7 @@ export default function Header() {
           <Link href="/compressimage" className="hover:underline">Compress Images</Link>
           <Link href="/mergepdf" className="hover:underline">Merge PDF</Link>
           <Link href="/pdftojpg" className="hover:underline">PDF to JPG</Link>
+          <Link href="/unlock-pdf" className="hover:underline">Unlock PDF</Link>
         </nav>
       </div>
     </header>
