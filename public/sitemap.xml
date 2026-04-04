@@ -3,32 +3,38 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.jpgstopdf.com</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
     <url>
     <loc>https://www.jpgstopdf.com/jpgtopdf</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jpgstopdf.com/compressimage</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.jpgstopdf.com/compress-image</loc>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jpgstopdf.com/mergepdf</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.jpgstopdf.com/merge-pdf</loc>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jpgstopdf.com/pdftojpg</loc>
-    <lastmod>2025-09-27</lastmod>
+    <loc>https://www.jpgstopdf.com/pdf-to-jpg</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+    <url>
+    <loc>https://www.jpgstopdf.com/unlock-pdf</loc>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -36,7 +42,7 @@
   <!-- Privacy Policy -->
   <url>
     <loc>https://www.jpgstopdf.com/privacy</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -44,7 +50,7 @@
   <!-- Terms & Conditions -->
   <url>
     <loc>https://www.jpgstopdf.com/TermsandConditions</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -52,7 +58,7 @@
   <!-- Disclaimer -->
   <url>
     <loc>https://www.jpgstopdf.com/disclaimer</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -60,7 +66,7 @@
   <!-- FAQ -->
   <url>
     <loc>https://www.jpgstopdf.com/faq</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -68,7 +74,7 @@
   <!-- Contact -->
   <url>
     <loc>https://www.jpgstopdf.com/contact</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -76,7 +82,7 @@
   <!-- About Us -->
   <url>
     <loc>https://www.jpgstopdf.com/aboutus</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2026-04-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

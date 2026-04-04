@@ -1,7 +1,9 @@
 import ImageCompressor from "../../components/ImageCompressor";
 
 export const metadata = {
+
   title: "Image Compressor - Reduce Image Size online | JPGStoPDF",
+  
   description:
     "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
   alternates: {
@@ -11,10 +13,29 @@ export const metadata = {
     title: "Image Compressor - Reduce Image Size online",
     description:
       "Easily compress images (JPG, PNG, etc.) online. Save space and optimize your images for faster websites.",
-    url: "/compressimage", // ✅ matches canonical
+    url: "https://www.jpgstopdf.com/compressimage",// ✅ matches canonical
     siteName: "JPGStoPDF",
     type: "website",
   },
+  keywords: [
+  "image compressor",
+  "compress jpg online",
+  "png compressor",
+  "reduce image size",
+  "image optimizer",
+  "photo compressor free",
+],
+robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+},
   twitter: {
     card: "summary_large_image",
     title: "Image Compressor - Reduce Image Size online",
@@ -32,13 +53,24 @@ export default function CompressPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: "JPGStoPDF - Online Image Compressor",
-            url: "https://www.jpgstopdf.com/compressimage", // ✅ fixed to match canonical
-            description:
-              "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
-            applicationCategory: "Utility",
-            operatingSystem: "Any",
+              "@type": "WebApplication",
+              "@id": "https://www.jpgstopdf.com/compressimage#app",
+              name: "JPGStoPDF - Online Image Compressor",
+              url: "https://www.jpgstopdf.com/compressimage",
+              description:
+                "Compress JPG, PNG, and other images online. Free, fast, and secure image compression to reduce file size without losing quality.",
+              applicationCategory: "UtilityApplication",
+              operatingSystem: "Any",
+              inLanguage: "en",
+              publisher: {
+                "@type": "Organization",
+                name: "JPGStoPDF",
+                url: "https://www.jpgstopdf.com",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.jpgstopdf.com/logo.png"
+                }
+              }
           }),
         }}
       />
@@ -46,20 +78,20 @@ export default function CompressPage() {
       <ImageCompressor />
 
       <section className="mt-10 text-gray-800">
-        <h1 className="text-3xl font-bold mb-6">Free Online Image Compressor</h1>
+        <h1 className="text-3xl font-bold mb-6">Free Online Image Compressor – Reduce JPG & PNG File Size Instantly</h1>
         <p className="mb-6 text-gray-800">
           Reduce the size of your images without compromising on quality. Upload
           JPG, PNG, or other image formats and download optimized compressed
           images instantly. You can also{" "}
           <a
-            href="/mergepdf"
+            href="/merge-pdf"
             className="text-blue-700 underline font-medium hover:text-blue-800 focus:text-blue-900 focus:underline decoration-2 decoration-blue-700"
           >
             merge PDFs
           </a>{" "}
           or{" "}
           <a
-            href="/pdftojpg"
+            href="/pdf-to-jpg"
             className="text-blue-700 underline font-medium hover:text-blue-800 focus:text-blue-900 focus:underline decoration-2 decoration-blue-700"
           >
             convert PDF to JPG
@@ -92,6 +124,10 @@ export default function CompressPage() {
             For websites, smaller file sizes improve SEO and user experience.
           </li>
         </ul>
+
+        <h2 className="text-2xl font-bold mb-4">
+  Compress Images Online Without Losing Quality
+</h2> 
       </section>
 
       {/* ✅ FAQ Section */}

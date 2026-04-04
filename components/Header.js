@@ -12,9 +12,9 @@ export default function Header() {
         <nav className="flex flex-wrap gap-3 md:gap-6 text-sm md:text-base mt-2 md:mt-0">
           <Link href="/" className="hover:underline">Home</Link>
           <Link href="/jpgtopdf" className="hover:underline">JPG to PDF</Link>
-          <Link href="/compressimage" className="hover:underline">Compress Images</Link>
-          <Link href="/mergepdf" className="hover:underline">Merge PDF</Link>
-          <Link href="/pdftojpg" className="hover:underline">PDF to JPG</Link>
+          <Link href="/compress-image" className="hover:underline">Compress Images</Link>
+          <Link href="/merge-pdf" className="hover:underline">Merge PDF</Link>
+          <Link href="/pdf-to-jpg" className="hover:underline">PDF to JPG</Link>
           <Link href="/unlock-pdf" className="hover:underline">Unlock PDF</Link>
         </nav>
       </div>

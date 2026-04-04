@@ -52,7 +52,7 @@ export default function HomePage() {
       {/* Tool Grid */}
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-16">
         <Link
-          href="/compressimage"
+          href="/compress-image"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">Compress Images</h2>
@@ -61,7 +61,7 @@ export default function HomePage() {
           </p>
         </Link>
         <Link
-          href="/mergepdf"
+          href="/merge-pdf"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">Merge PDFs</h2>
@@ -70,7 +70,7 @@ export default function HomePage() {
           </p>
         </Link>
         <Link
-          href="/pdftojpg"
+          href="/pdf-to-jpg"
           className="border rounded-xl p-6 text-center shadow hover:shadow-lg transition"
         >
           <h2 className="font-semibold text-xl mb-2">PDF to JPG</h2>
